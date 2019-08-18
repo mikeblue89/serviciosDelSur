@@ -1,0 +1,20 @@
+<div>
+	<nav class="navbar navbar-default bgnavBar" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-click="vm.isNavCollapsed = !vm.isNavCollapsed">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Menu</a>
+        </div>
+
+        <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
+            <ul class="nav navbar-nav menuColor" ng-repeat="item in vm.navbarItems">
+                <li ng-if = "!item.abstract" class="menuColor"><a ui-sref= "{{item.name}}" ui-sref-active="active">{{item.tittle}}</a></li>
+            </ul>
+        </div>
+    </nav>
+    <ui-view></ui-view>
+</div>
