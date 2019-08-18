@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "package fronEnd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "servicios",
+    "del",
+    "sur"
+  ],
+  "author": "MikeBlue, Gathzilla, Edelmorataya",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.22",
+    "angular": "^1.7.8",
+    "angular-ui-bootstrap": "^2.5.6",
+    "bootstrap": "^3.3.7",
+    "sweetalert2": "^8.11.6"
+  }
+}
