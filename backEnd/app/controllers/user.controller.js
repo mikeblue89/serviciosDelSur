@@ -16,13 +16,13 @@ let isValid = (user) => {
         return { isValid: false, propertyInvalid: "numeroCuenta" };
     }else if (!user.telefono) {
         return { isValid: false, propertyInvalid: "telefono" };
-    }else if (!email.email) {
+    }else if (!user.email) {
         return { isValid: false, propertyInvalid: "email" };
-    }else if (!email.nick) {
+    }else if (!user.nick) {
         return { isValid: false, propertyInvalid: "nick" };
-    }else if (!email.password) {
+    }else if (!user.password) {
         return { isValid: false, propertyInvalid: "password" };
-    }else if (!roles.roles) {
+    }else if (!user.roles) {
         return { isValid: false, propertyInvalid: "roles" };
     }else {
         return { isValid: true, propertyInvalid: undefined }
@@ -46,15 +46,15 @@ exports.create = (req, res) => {
         const newUser = new User({
 
             codigoEmpleado: req.body.codigoEmpleado,
-            name: req.body.codigoEmpleado,
-            lastName: req.body.codigoEmpleado,    
-            nit: req.body.codigoEmpleado,    
-            numeroCuenta: req.body.codigoEmpleado,
-            telefono: req.body.codigoEmpleado,
-            email: req.body.codigoEmpleado,
-            nick: req.body.codigoEmpleado,
-            password: req.body.codigoEmpleado,
-            roles: req.body.codigoEmpleado
+            name: req.body.name,
+            lastName: req.body.lastName,    
+            nit: req.body.nit,    
+            numeroCuenta: req.body.numeroCuenta,
+            telefono: req.body.telefono,
+            email: req.body.email,
+            nick: req.body.nick,
+            password: req.body.password,
+            roles: req.body.roles
 
         });
 
@@ -65,7 +65,7 @@ exports.create = (req, res) => {
             return wrapper.sendResponse({ method: "POST /api/user", response: response, httpCode: 400, res: res });
         } else {
             
-            newUser.password = bcrypt.hashSync(newUser.password, 8);
+            
             
             newUser.save()
                 .then(data => {
@@ -128,16 +128,15 @@ exports.update = (req, res) => {
         const userToUpdate = {
              
             codigoEmpleado: req.body.codigoEmpleado,
-            name: req.body.codigoEmpleado,
-            lastName: req.body.codigoEmpleado,    
-            nit: req.body.codigoEmpleado,    
-            numeroCuenta: req.body.codigoEmpleado,
-            telefono: req.body.codigoEmpleado,
-            email: req.body.codigoEmpleado,
-            nick: req.body.codigoEmpleado,
-            password: req.body.codigoEmpleado,
-            roles: req.body.codigoEmpleado
-
+            name: req.body.name,
+            lastName: req.body.lastName,    
+            nit: req.body.nit,    
+            numeroCuenta: req.body.numeroCuenta,
+            telefono: req.body.telefono,
+            email: req.body.email,
+            nick: req.body.nick,
+            password: req.body.password,
+            roles: req.body.roles
         };
 
         let validation = isValid(userToUpdate);
@@ -146,7 +145,7 @@ exports.update = (req, res) => {
             return wrapper.sendResponse({ method: "PUT /api/user", response: response, httpCode: 400, res: res });
         } else {
             
-            userToUpdate.password = bcrypt.hashSync(userToUpdate.password, 8);
+            
 
            
             User.findByIdAndUpdate(req.body._id, userToUpdate, { new: true, upsert: true })
