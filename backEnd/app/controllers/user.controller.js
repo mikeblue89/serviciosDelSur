@@ -1,6 +1,6 @@
 const User = require('../models/user.model');
 const wrapper = require('../utils/wrapper');
-
+const bcrypt = require('bcryptjs');
 
 let isValid = (user) => {
 
@@ -65,7 +65,7 @@ exports.create = (req, res) => {
             return wrapper.sendResponse({ method: "POST /api/user", response: response, httpCode: 400, res: res });
         } else {
             
-            
+            newUser.password = bcrypt.hashSync(newUser.password, 8);
             
             newUser.save()
                 .then(data => {
@@ -146,12 +146,12 @@ exports.update = (req, res) => {
         } else {
             
             
-
+            newUser.password = bcrypt.hashSync(newUser.password, 8);
            
-            User.findByIdAndUpdate(req.body._id, userToUpdate, { new: true, upsert: true })
+            User.findByIdAndUpdate(req.body.codigoEmpleado, userToUpdate, { new: true, upsert: true })
                 .then(user => {
                     if (!user) {
-                        let response = { "status": "error", "message": "Some error ocurred while updating the user with id" + req.body._id, "error": true, "data": undefined };
+                        let response = { "status": "error", "message": "Some error ocurred while updating the user with id" + req.body.codigoEmpleado, "error": true, "data": undefined };
                         return wrapper.sendResponse({ method: "PUT /api/user", response: response, httpCode: 404, res: res });
                     } else {
                         let response = { "status": "ok", "message": "User updated successfully", "error": false, "data": user };
