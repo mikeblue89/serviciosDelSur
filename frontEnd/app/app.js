@@ -19,7 +19,7 @@
                 }
             },
             {
-                name: 'app.catalogo',
+                name: 'app.login',
                 options: {
                     title: 'login',
                     url: '/login',

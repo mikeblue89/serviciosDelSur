@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+}
+.login_description {
+    background-color: #FFD400;
+} 
+
+.login_description h1, .login_description h3{
+    text-transform: uppercase;
+} 
+
+.login_description, .login_credentials {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    padding:10%;
+  }
