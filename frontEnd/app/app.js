@@ -26,15 +26,6 @@
                 options: {
                     title: "Login",
                     url: "/login",
-                    template: "<login-component></login-component>",
-                    data: { css: ['app/css/login.css'] }
-                }
-            },
-            {
-                name: 'app.main',
-                options: {
-                    title: 'main',
-                    url: '/main',
                     templateUrl: 'app/controller/main/main.html',
                     controller: 'mainController',
                     controllerAs: 'vm'
