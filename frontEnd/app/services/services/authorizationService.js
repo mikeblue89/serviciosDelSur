@@ -4,7 +4,7 @@
     var module = angular.module('serviciosDelSur');
 
     module.service('$authorizationService', function (EntityService, jwtHelper) {
-        let entityService = new EntityService('auth');
+        let entityService = new EntityService('authorization');
 
         this.authenticatedUser = () => {
             return (isAValidToken() && this.getuserData() && this.getuserData().id);
@@ -45,7 +45,6 @@
 
         let oneEndActionError = (actionError) => {
             return (response) => {
-                notifier.error(response.data.message);
                 if (actionError) {
                     actionError(response);
                 }

@@ -20,7 +20,9 @@
         }
 
         vm.logIn = ()=>{
-            $authorizationService.login({username: vm.username, password: vm.password},onSuccess);   
+            $authorizationService.login({username: vm.username, password: vm.password},onSuccess);
+            console.log(vm.username);
+            console.log(vm.password);
         }
 
     }]);

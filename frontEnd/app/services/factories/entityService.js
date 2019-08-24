@@ -22,7 +22,7 @@
                 }
     
                 if(options.body){
-                    config.data = options.data;
+                    config.data = options.body;
                 }
     
                 if(options.headers){
@@ -36,10 +36,11 @@
             }
     
             let getmainUrl = ()=>{
-                return enviroment[$enviroment.getEnviroment()].protocol +'://'+
-                       enviroment[$enviroment.getEnviroment()].domain +':'+
-                       enviroment[$enviroment.getEnviroment()].port +'/'+
-                       enviroment[$enviroment.getEnviroment()].api;
+
+                return enviroment.login.protocol +'://'+
+                       enviroment.login.domain +':'+
+                       enviroment.login.port +'/'+
+                       enviroment.login.api;
             }
     
             this.loadMetadata = (actionSuccess, actionError)=>{
