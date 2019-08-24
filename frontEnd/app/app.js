@@ -39,6 +39,16 @@
                     controller: 'mainController',
                     controllerAs: 'vm'
                 }
+            },
+            {
+                name: 'app.home',
+                options: {
+                    title: 'home',
+                    url: '/home',
+                    templateUrl: 'app/controller/home/home.html',
+                    controller: 'homeController',
+                    controllerAs: 'vm'
+                }
             }
         ];
 
