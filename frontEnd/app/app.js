@@ -63,7 +63,19 @@
     mainModule.config(mainModuleConfig);
     mainModuleConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$environmentProvider', 'jwtOptionsProvider', 'enviroment', '$httpProvider'];
 
-    mainModule.controller("appController", function($state){
+    let runFunction = ( $authorizationService, $state, $timeout, $transitions) => {
+        
+        $transitions.onCreate({}, () => {
+            if (!$authorizationService.authenticatedUser()) {
+                $timeout(() => { $state.go('login') });
+            }
+        });
+
+    }
+    mainModule.run(runFunction);
+    runFunction.$inject = ["$authorizationService", "$state", "$timeout", "$transitions"];
+
+    mainModule.controller("appController", function($state,$authorizationService){
         let vm = this;
 
         vm.isNavCollapsed = true;
@@ -71,6 +83,11 @@
         vm.isCollapsedHorizontal = false;
 
         vm.navbarItems = $state.get();
+        vm.logout = () => {
+            $authorizationService.logout();
+            $state.go('login');
+        }
+        
     });
 
 })();
