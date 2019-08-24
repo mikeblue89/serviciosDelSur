@@ -3,7 +3,7 @@
 
     var module = angular.module('serviciosDelSur');
 
-    module.factory('entityService', function (entities, enviroment, $enviroment, $injector){
+    module.factory('EntityService', function (entities, enviroment, $enviroment, $injector){
 
         let entityService = function (entityName) {
 

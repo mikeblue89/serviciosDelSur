@@ -3,7 +3,7 @@
 
     var module = angular.module('serviciosDelSur');
 
-    module.service('$authorizationService', function (entityService, jwtHelper) {
+    module.service('$authorizationService', function (EntityService, jwtHelper) {
         let entityService = new EntityService('auth');
 
         this.authenticatedUser = () => {

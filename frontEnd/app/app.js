@@ -1,9 +1,12 @@
 (()=>{
     'use strict';
 
-    let mainModule = angular.module('serviciosDelSur', ['ui.router']);
+    let mainModule = angular.module('serviciosDelSur', ['ui.router', 'uiRouterStyles', 'angular-jwt']);
 
-    let mainModuleConfig = ($stateProvider, $locationProvider, $urlRouterProvider, $environmentProvider, jwtOptionsProvider, enviroment, $httpProvider) => {
+    let mainModuleConfig = ($stateProvider, $locationProvider, $urlRouterProvider, $enviromentProvider, jwtOptionsProvider, enviroment, $httpProvider) => {
+        
+        const Enviroment = 'login';
+
         $locationProvider.html5Mode(false);
         $urlRouterProvider.otherwise('/login');
 
@@ -41,7 +44,7 @@
 
         states.forEach(state => $stateProvider.state(state.name, state.options));
 
-        $environmentProvider.setEnvironment(enviroment);
+        $enviromentProvider.setEnviroment(enviroment);
 
         jwtOptionsProvider.config({
             tokenGetter: ['options',
@@ -53,7 +56,7 @@
                     return sessionStorage.getItem('sessionToken');
                 }],
 
-            whiteListedDomains: [enviroment[enviroment].domain]
+            whiteListedDomains: [enviroment[Enviroment].domain]
         });
 
         $httpProvider.interceptors.push('tokenInterceptor');
@@ -61,7 +64,7 @@
     };
 
     mainModule.config(mainModuleConfig);
-    mainModuleConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$environmentProvider', 'jwtOptionsProvider', 'enviroment', '$httpProvider'];
+    mainModuleConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$enviromentProvider', 'jwtOptionsProvider', 'enviroment', '$httpProvider'];
 
     let runFunction = ( $authorizationService, $state, $timeout, $transitions) => {
         
