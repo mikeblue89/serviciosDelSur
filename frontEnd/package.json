@@ -29,6 +29,7 @@
     "sweetalert2": "^8.11.6"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.2",
     "gulp": "^4.0.0"
   }
 }

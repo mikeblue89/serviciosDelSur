@@ -1,9 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap');
+
 html, body {
     height: 100%;
+    overflow: hidden;
+    background: #ffe259;
+    background: linear-gradient(to right,#ffa751, #ffe259);
 }
 .login_description {
-    background-color: #FFD400;
+    background-color: #ffe259;
+    font-family: "Montserrat", cursive;
 } 
+
+.login_credentials{
+    font-family: "Montserrat", cursive;
+}
 
 .login_description h1, .login_description h3{
     text-transform: uppercase;
@@ -15,3 +25,60 @@ html, body {
     margin: 0;
     padding:10%;
   }
+
+  .container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80%;
+      max-width: 2000px;
+  }
+
+  .container .panel{
+      width: 90%;
+      height: 72%;
+      box-shadow: 1px 2px 5px rgb(27, 27, 27);
+  }
+
+  .btn{
+      padding: .5rem 1.5rem;
+      border: none;
+      border-radius: 4rem;
+      background: #ffa751;
+      color: whitesmoke;
+      font-size: 2rem;
+      font-family: "Montserrat";
+      box-shadow: 1px 2px 5px rgb(27, 27, 27);
+  }
+
+form{
+    height: 45%;
+    max-height: 250px;
+    margin-top: 5.5rem;
+
+}
+
+form .form-group{
+    text-align: left;
+    border: 1px solid rgba(0, 0, 0, 0.320);
+    margin-top: .9rem;
+    margin-right: 1rem;
+    border-radius: 3rem;
+}
+
+form .form-group .form-input{
+    padding: .5rem 1rem;
+    background: transparent;
+    border: none;
+    font-family: "Montserrat";
+    overflow: hidden;
+}
+
+form input:focus{
+    outline: none;
+}
+
+form .input-icon{
+    display: inline;
+    color: rgba(0, 0, 0, 0.320);
+}

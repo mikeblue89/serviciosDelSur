@@ -26,9 +26,8 @@
                 options: {
                     title: "Login",
                     url: "/login",
-                    templateUrl: 'app/controller/main/main.html',
-                    controller: 'mainController',
-                    controllerAs: 'vm'
+                    template: "<login-component></login-component>",
+                    data: { css: ['css/customStyle.css'] }
                 }
             },
             {
