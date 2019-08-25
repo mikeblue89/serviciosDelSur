@@ -7,6 +7,9 @@
         let vm = this;
         vm.test = 'Successfully Logged In';
 
+        vm.logout = ()=>{
+            sessionStorage.removeItem("sessionToken");
+        }
     });
 
 }

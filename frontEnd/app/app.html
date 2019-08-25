@@ -1,5 +1,5 @@
 <div>
-	<nav class="navbar navbar-default bgnavBar" role="navigation">
+	<nav class="navbar navbar-inverse bgnavBar" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" ng-click="vm.isNavCollapsed = !vm.isNavCollapsed">
 				<span class="sr-only">Toggle navigation</span>
@@ -11,11 +11,15 @@
 				<i class="glyphicon glyphicon-home"></i>
 				Home
 			</a>
+			<a class="navbar-brand" href="#" ng-click="vm.logout()">
+				<i class="fas fa-sign-out-alt"></i>
+				Log Out
+			</a>
         </div>
 
         <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
-            <ul class="nav navbar-nav menuColor" ng-repeat="item in vm.navbarItems">
-                <li ng-if = "!item.abstract" class="menuColor"><a ui-sref= "{{item.name}}" ui-sref-active="active">{{item.tittle}}</a></li>
+            <ul class="nav navbar-nav" ng-repeat="item in vm.navbarItems">
+                <li ng-if = "!item.abstract"><a ui-sref= "{{item.name}}" ui-sref-active="active">{{item.tittle}}</a></li>
             </ul>
         </div>
     </nav>
