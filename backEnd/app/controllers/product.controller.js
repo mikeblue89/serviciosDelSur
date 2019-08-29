@@ -19,11 +19,13 @@ let isValid = (product) => {
         return { isValid: false, propertyInvalid: "Model" };
     } else if (!product.Manufacturer){
         return { isValid: false, propertyInvalid: "Manufacturer" };
+    } else{
+        return {isValid: true, propertyInvalid: undefined}
     }
 }
 
 exports.metadata = (req, res) => {
-    let response = { "status": "ok", "message": "product metadata queried successfully", "error": false, "data": product.schema.paths };
+    let response = { "status": "ok", "message": "product metadata queried successfully", "error": false, "data": Product.schema.paths };
     return wrapper.sendResponse({ method: "GET /api/product/metadata", response: response, httpCode: 200, res: res });
 };
 
@@ -44,6 +46,7 @@ exports.create = (req, res) => {
             Model: req.body.Model,
             Manufacturer: req.body.Manufacturer
         });
+        
 
         let validation = isValid(newProduct);
 
@@ -80,12 +83,37 @@ exports.findAll = (req, res) => {
             return wrapper.sendResponse({ method: "GET /api/product", response: response, httpCode: 500, res: res });
         });
 };
-//search by product
+
+//Search by Product Given Data
+exports.findByGivenData = (req, res) => {
+    Product.findByParameter(req.params.parameter)
+        .then (Product => {
+            if (!Product) {
+                let response = { "status": "error", "message": req.params.parameter + " with product.", "error": true, "data": undefined};
+                return wrapper.sendResponse({method: "GET /api/product/" + req.params.parameter, response: response, httpCode: 500, res: res});
+            } else {
+                let response = {"status": "ok", "message": parameter + " queried Successfully", "error": true, "data": undefined};
+                return wrapper.sendResponse({method: "GET /api/product/"+ req.params.parameter, response: response, httpCode: 200, res: res})
+            }
+        }).catch(error => {
+            if (error.kind === "Object" + parameter) {
+                let response = {"status": "error", "message": "Product not found with kkkk" + req.params.parameter, "error": true, "data": undefined  };
+                return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response:response, httpCode: 404, res: res});
+            } else {
+                let response = {"status": "error", "message": "Error retrieving product with" + req.params.parameter, "error": true, "data": error.message || undefined };
+                return wrapper.sendResponse({method: "GET /api/product", response: response, httpCode: 500, res: res});
+            }
+        });
+};
+// close the attached element
+
+
+
 exports.findOne = (req, res) => {
     Product.findById(req.params.id)
         .then(product => {
             if (!product) {
-                let response = { "status": "error", "message": "Product not found with id " + req.params.id, "error": true, "data": undefined };
+                let response = { "status": "error", "message": "Product not found with idsdfas " + req.params.id, "error": true, "data": undefined };
                 return wrapper.sendResponse({ method: "GET /api/product/" + req.params.id, response: response, httpCode: 404, res: res });
             } else {
                 let response = { "status": "ok", "message": "Product queried successfully", "error": false, "data": product };
@@ -93,7 +121,7 @@ exports.findOne = (req, res) => {
             }
         }).catch(error => {
             if (error.kind === 'ObjectId') {
-                let response = { "status": "error", "message": "Product not found with id " + req.params.id, "error": true, "data": undefined };
+                let response = { "status": "error", "message": "Product not found with id findOne " + req.params.id, "error": true, "data": undefined };
                 return wrapper.sendResponse({ method: "GET /api/product/" + req.params.id, response: response, httpCode: 404, res: res });
             } else {
                 let response = { "status": "error", "message": "Error retrieving product with id " + req.params.id, "error": true, "data": error.message || undefined };
@@ -101,9 +129,6 @@ exports.findOne = (req, res) => {
             }
         });
 };
-
-
-
 
 exports.update = (req, res) => {
     
@@ -155,7 +180,7 @@ exports.delete = (req, res) => {
     Product.findByIdAndRemove(req.params.id)
         .then(product => {
             if (!product) {
-                let response = { "status": "error", "message": "Product not found with id " + req.params.id, "error": true, "data": undefined };
+                let response = { "status": "error", "message": "Product not found with" + req.params.id, "error": true, "data": undefined };
                 return wrapper.sendResponse({ method: "DELETE /api/product", response: response, httpCode: 404, res: res });
             } else {
                 let response = { "status": "ok", "message": "Product deleted successfully", "error": false, "data": undefined };

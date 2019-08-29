@@ -27,9 +27,7 @@ let isValid = (user) => {
     }else {
         return { isValid: true, propertyInvalid: undefined }
     }
-
 }
-
 
 exports.metadata = (req, res) => {
     let response = { "status": "ok", "message": "User metadata queried successfully", "error": false, "data": User.schema.paths };
@@ -44,7 +42,6 @@ exports.create = (req, res) => {
     } else {
     
         const newUser = new User({
-
             codigoEmpleado: req.body.codigoEmpleado,
             name: req.body.name,
             lastName: req.body.lastName,    
@@ -55,7 +52,6 @@ exports.create = (req, res) => {
             nick: req.body.nick,
             password: req.body.password,
             roles: req.body.roles
-
         });
 
         let validation = isValid(newUser);
@@ -126,7 +122,6 @@ exports.update = (req, res) => {
     } else {
          
         const userToUpdate = {
-             
             codigoEmpleado: req.body.codigoEmpleado,
             name: req.body.name,
             lastName: req.body.lastName,    
