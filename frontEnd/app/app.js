@@ -33,17 +33,27 @@
             {
                 name: 'app.home',
                 options: {
-                    title: 'home',
+                    title: 'Home',
                     url: '/home',
                     templateUrl: 'app/controller/home/home.html',
                     controller: 'homeController',
                     controllerAs: 'vm'
+                }
+            },
+            {
+                name: "product",
+                options: {
+                    title: "Product",
+                    url: "/product",
+                    template: "<product-component></product-component>",
+                    data: { css: ['css/customStyle.css'] }
                 }
             }
         ];
 
         states.forEach(state => $stateProvider.state(state.name, state.options));
 
+        console.log(states);
         $enviromentProvider.setEnviroment(enviroment);
 
         jwtOptionsProvider.config({
@@ -89,6 +99,20 @@
         vm.logout = () => {
             $authorizationService.logout();
             $state.go('login');
+        }
+
+        vm.icon = (propertyName) =>{
+            switch(propertyName){
+                case 'Home': {
+                    return 'fas fa-home';
+                }
+                case 'Product':{
+                    return 'fab fa-product-hunt';
+                }
+                default:{
+                    return '';
+                }
+            }
         }
         
     });
