@@ -15,6 +15,6 @@ module.exports = (app) => {
 
     app.delete('/api/product/:id', verifyToken, products.delete);
 
-    app.get('/api/product/find', verifyToken, products.findByGivenData);
+    app.get('/api/product/:find', verifyToken, products.findByGivenData);
 
 }

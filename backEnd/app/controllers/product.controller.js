@@ -33,7 +33,7 @@ exports.create = (req, res) => {
     
     if (!req.body) {
         let response = { "status": "error", "message": "Product content can not be empty", "error": true, "data": undefined };
-        return wrapper.sendResponse({ method: "POST /api/products", response: response, httpCode: 400, res: res });
+        return wrapper.sendResponse({ method: "POST /api/product", response: response, httpCode: 400, res: res });
     } else {
     
         const newProduct = new Product({
@@ -86,14 +86,14 @@ exports.findAll = (req, res) => {
 
 //Search by Product Given Data
 exports.findByGivenData = (req, res) => {
-    Product.findByParameter(req.params.parameter)
+    Product.findOne(req.params.parameter)
         .then (Product => {
             if (!Product) {
                 let response = { "status": "error", "message": req.params.parameter + " with product.", "error": true, "data": undefined};
-                return wrapper.sendResponse({method: "GET /api/product/" + req.params.parameter, response: response, httpCode: 500, res: res});
+                return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response: response, httpCode: 500, res: res});
             } else {
                 let response = {"status": "ok", "message": parameter + " queried Successfully", "error": true, "data": undefined};
-                return wrapper.sendResponse({method: "GET /api/product/"+ req.params.parameter, response: response, httpCode: 200, res: res})
+                return wrapper.sendResponse({method: "GET /api/product/find"+ req.params.parameter, response: response, httpCode: 200, res: res})
             }
         }).catch(error => {
             if (error.kind === "Object" + parameter) {
@@ -101,7 +101,7 @@ exports.findByGivenData = (req, res) => {
                 return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response:response, httpCode: 404, res: res});
             } else {
                 let response = {"status": "error", "message": "Error retrieving product with" + req.params.parameter, "error": true, "data": error.message || undefined };
-                return wrapper.sendResponse({method: "GET /api/product", response: response, httpCode: 500, res: res});
+                return wrapper.sendResponse({method: "GET /api/product/find", response: response, httpCode: 500, res: res});
             }
         });
 };
