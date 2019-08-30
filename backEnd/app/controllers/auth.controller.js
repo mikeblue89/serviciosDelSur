@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const config = require('../auth/secrets');
 
 exports.login = (req, res) => {
-    User.findOne({ codigoEmpleado: req.body.codigoEmpleado }, (error, user) => {
+    User.findOne({ name : req.body.name }, (error, user) => {
         if (error) {
             let response = { "status": "error", "message": "Some error occurred while login the User", "error": true, "data": error.message || undefined };
             return wrapper.sendResponse({ method: "POST /api/login", response: response, httpCode: 500, res: res });
@@ -13,7 +13,7 @@ exports.login = (req, res) => {
             let response = { "status": "error", "message": "user or password is incorrect", "error": true, "data": undefined };
             return wrapper.sendResponse({ method: "POST /api/login", response: response, httpCode: 401, res: res });
         } else {
-            
+            console.log(user);
             let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
             if (!passwordIsValid) {
                 let response = { "status": "error", "message": "User or password is incorrect", "error": true, "data": undefined };
