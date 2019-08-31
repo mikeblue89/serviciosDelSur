@@ -15,10 +15,6 @@ module.exports = (app) => {
 
     app.delete('/api/product/:id', verifyToken, product.delete);
 
-<<<<<<< HEAD
-    app.get('/api/product/:codigoDeBarras', verifyToken, products.findByGivenData);
-=======
     app.get('/api/find', verifyToken, product.findByParameter);
->>>>>>> 48da6e22feb19b2bf250fef11667bcaa564e31f7
 
 }

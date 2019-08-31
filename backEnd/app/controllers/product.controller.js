@@ -83,32 +83,12 @@ exports.findAll = (req, res) => {
         });
 };
 
-<<<<<<< HEAD
-//Search by Product Given Data
-exports.findByGivenData = (req, res) => {
-    Product.findById(req.params.CodigoDeBarras)
-        .then (product => {
-            if (!product) {
-                let response = { "status": "error", "message": req.params.parameter + " with product.", "error": true, "data": undefined};
-                return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response: response, httpCode: 500, res: res});
-            } else {
-                let response = {"status": "ok", "message": parameter + " queried Successfully", "error": true, "data": undefined};
-                return wrapper.sendResponse({method: "GET /api/product/find"+ req.params.parameter, response: response, httpCode: 200, res: res})
-            }
-        }).catch(error => {
-            if (error.kind === "Object" + parameter) {
-                let response = {"status": "error", "message": "Product not found with kkkk" + req.params.parameter, "error": true, "data": undefined  };
-                return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response:response, httpCode: 404, res: res});
-            } else {
-                let response = {"status": "error", "message": "Error retrieving product with" + req.params.parameter, "error": true, "data": error.message || undefined };
-=======
 //Search by Parameter
 exports.findByParameter= (req, res) => {
 
     Product.findOne({[req.body.parameter] : req.body.value}, (error, product) => {
         if (error) {
                 let response = { "status": "error", "message": " Error encountered on returning the requested result", "error": true, "data": error.message};
->>>>>>> 48da6e22feb19b2bf250fef11667bcaa564e31f7
                 return wrapper.sendResponse({method: "GET /api/product/find", response: response, httpCode: 500, res: res});
         } 
         else if(!product) {
