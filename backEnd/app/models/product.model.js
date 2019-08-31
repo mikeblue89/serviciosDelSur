@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
      
-    Codigo: Number,
-    CodigoDeBarras: String,
+    Code: Number,
+    Barcode: String,
     Name: String,    
     Description: String,    
     LastCost: Number,
