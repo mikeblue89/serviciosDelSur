@@ -1,20 +1,20 @@
 module.exports = (app) => {
 
-    const products = require('../controllers/product.controller');
+    const product = require('../controllers/product.controller');
     const verifyToken = require('../auth/verifyToken');
     
-    app.get('/api/product/metadata', verifyToken,  products.metadata);
+    app.get('/api/product/metadata', verifyToken,  product.metadata);
 
-    app.get('/api/product', verifyToken, products.findAll);
+    app.get('/api/product', verifyToken, product.findAll);
 
-    app.get('/api/product/:id', verifyToken, products.findOne);
+    app.get('/api/product/:id', verifyToken, product.findOneProduct);
 
-    app.post('/api/product', verifyToken, products.create);
+    app.post('/api/product', verifyToken, product.create);
 
-    app.put('/api/product', verifyToken, products.update);
+    app.put('/api/product', verifyToken, product.update);
 
-    app.delete('/api/product/:id', verifyToken, products.delete);
+    app.delete('/api/product/:id', verifyToken, product.delete);
 
-    app.get('/api/product/:find', verifyToken, products.findByGivenData);
+    app.get('/api/find', verifyToken, product.findByParameter);
 
 }

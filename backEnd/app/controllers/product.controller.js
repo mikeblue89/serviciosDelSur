@@ -3,10 +3,10 @@ const wrapper = require('../utils/wrapper');
 
 
 let isValid = (product) => {
-    if (!product.Codigo) {
-        return { isValid: false, propertyInvalid: "Codigo" };
-    } else if (!product.CodigoDeBarras){
-        return { isValid: false, propertyInvalid: "CodigoDeBarras" };
+    if (!product.Code) {
+        return { isValid: false, propertyInvalid: "Code" };
+    } else if (!product.Barcode){
+        return { isValid: false, propertyInvalid: "Barcode" };
     } else if (!product.Name){
         return { isValid: false, propertyInvalid: "Name" };
     } else if (!product.Description){
@@ -29,16 +29,15 @@ exports.metadata = (req, res) => {
     return wrapper.sendResponse({ method: "GET /api/product/metadata", response: response, httpCode: 200, res: res });
 };
 
-exports.create = (req, res) => {
-    
+exports.create = (req, res) => {  
     if (!req.body) {
         let response = { "status": "error", "message": "Product content can not be empty", "error": true, "data": undefined };
         return wrapper.sendResponse({ method: "POST /api/product", response: response, httpCode: 400, res: res });
     } else {
     
         const newProduct = new Product({
-            Codigo: req.body.Codigo,
-            CodigoDeBarras: req.body.CodigoDeBarras,
+            Code: req.body.Code,
+            Barcode: req.body.Barcode,
             Name: req.body.Name,    
             Description: req.body.Description,    
             LastCost: req.body.LastCost,
@@ -84,48 +83,43 @@ exports.findAll = (req, res) => {
         });
 };
 
-//Search by Product Given Data
-exports.findByGivenData = (req, res) => {
-    Product.findOne(req.params.parameter)
-        .then (Product => {
-            if (!Product) {
-                let response = { "status": "error", "message": req.params.parameter + " with product.", "error": true, "data": undefined};
-                return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response: response, httpCode: 500, res: res});
-            } else {
-                let response = {"status": "ok", "message": parameter + " queried Successfully", "error": true, "data": undefined};
-                return wrapper.sendResponse({method: "GET /api/product/find"+ req.params.parameter, response: response, httpCode: 200, res: res})
-            }
-        }).catch(error => {
-            if (error.kind === "Object" + parameter) {
-                let response = {"status": "error", "message": "Product not found with kkkk" + req.params.parameter, "error": true, "data": undefined  };
-                return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response:response, httpCode: 404, res: res});
-            } else {
-                let response = {"status": "error", "message": "Error retrieving product with" + req.params.parameter, "error": true, "data": error.message || undefined };
+//Search by Parameter
+exports.findByParameter= (req, res) => {
+
+    Product.findOne({[req.body.parameter] : req.body.value}, (error, product) => {
+        if (error) {
+                let response = { "status": "error", "message": " Error encountered on returning the requested result", "error": true, "data": error.message};
                 return wrapper.sendResponse({method: "GET /api/product/find", response: response, httpCode: 500, res: res});
+        } 
+        else if(!product) {
+            let response = {"status": "error", "message": "Error retrieving product.", "error": true, "data": undefined };
+            return wrapper.sendResponse({method: "GET /api/find", response: response, httpCode: 401, res: res});
             }
-        });
-};
-// close the attached element
+        else{
+            let response = { "status": "ok", "message": "Product retrieved succesfully", "error": false, "data": product};
+            return wrapper.sendResponse({ method: "GET /api/product/find", response: response, httpCode: 200, res: res }); 
+            }
+        } 
+        )};
+// close the find element
 
-
-
-exports.findOne = (req, res) => {
+exports.findOneProduct = (req, res) => {
     Product.findById(req.params.id)
         .then(product => {
             if (!product) {
-                let response = { "status": "error", "message": "Product not found with idsdfas " + req.params.id, "error": true, "data": undefined };
-                return wrapper.sendResponse({ method: "GET /api/product/" + req.params.id, response: response, httpCode: 404, res: res });
+                let response = { "status": "error", "message": "Product not found with given information" + req.params.id, "error": true, "data": undefined };
+                return wrapper.sendResponse({ method: "GET /api/product/:id" + req.params.id, response: response, httpCode: 404, res: res });
             } else {
                 let response = { "status": "ok", "message": "Product queried successfully", "error": false, "data": product };
-                return wrapper.sendResponse({ method: "GET /api/product/" + req.params.id, response: response, httpCode: 200, res: res });
+                return wrapper.sendResponse({ method: "GET /api/product/:id" + req.params.id, response: response, httpCode: 200, res: res });
             }
         }).catch(error => {
             if (error.kind === 'ObjectId') {
                 let response = { "status": "error", "message": "Product not found with id findOne " + req.params.id, "error": true, "data": undefined };
-                return wrapper.sendResponse({ method: "GET /api/product/" + req.params.id, response: response, httpCode: 404, res: res });
+                return wrapper.sendResponse({ method: "GET /api/product/:id" + req.params.id, response: response, httpCode: 404, res: res });
             } else {
                 let response = { "status": "error", "message": "Error retrieving product with id " + req.params.id, "error": true, "data": error.message || undefined };
-                return wrapper.sendResponse({ method: "GET /api/product", response: response, httpCode: 500, res: res });
+                return wrapper.sendResponse({ method: "GET /api/product/:id", response: response, httpCode: 500, res: res });
             }
         });
 };
@@ -138,8 +132,8 @@ exports.update = (req, res) => {
     } else {
          
         const productToUpdate = {
-            Codigo: req.body.Codigo,
-            CodigoDeBarras: req.body.CodigoDeBarras,
+            Code: req.body.Code,
+            Barcode: req.body.Barcode,
             Name: req.body.Name,    
             Description: req.body.Description,    
             LastCost: req.body.LastCost,
