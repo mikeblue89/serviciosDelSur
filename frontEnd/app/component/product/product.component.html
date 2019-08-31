@@ -7,41 +7,41 @@
                         <div class="row">
                             <div class="form-group col-xs-6">
                                 <label for="code">{{vm.header[0]}}</label>
-                                <input type="text" class="form-control" id="code" ng-model="vm.product.code">
+                                <input type="text" class="form-control" id="code" ng-model="vm.product.Code">
                             </div>
                             <div class="form-group col-xs-6">
                                     <label for="barCode">{{vm.header[1]}}</label>
-                                    <input type="text" class="form-control" id="barCode" ng-model="vm.product.barCode">
+                                    <input type="text" class="form-control" id="barCode" ng-model="vm.product.Barcode">
                             </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
                                     <label for="name">{{vm.header[2]}}</label>
-                                    <input type="text" class="form-control" id="name" ng-model="vm.product.name">
+                                    <input type="text" class="form-control" id="name" ng-model="vm.product.Name">
                                 </div>
                                 <div class="form-group col-xs-6">
                                         <label for="description">{{vm.header[3]}}</label>
-                                        <input type="text" class="form-control" id="description" ng-model="vm.product.description">
+                                        <input type="text" class="form-control" id="description" ng-model="vm.product.Description">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
                                     <label for="lastCost">{{vm.header[4]}}</label>
-                                    <input type="text" class="form-control" id="lastCost" ng-model="vm.product.lastCost">
+                                    <input type="text" class="form-control" id="lastCost" ng-model="vm.product.LastCost">
                                 </div>
                                 <div class="form-group col-xs-6">
                                         <label for="brand">{{vm.header[5]}}</label>
-                                        <input type="text" class="form-control" id="brand" ng-model="vm.product.brand">
+                                        <input type="text" class="form-control" id="brand" ng-model="vm.product.Brand">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
                                     <label for="model">{{vm.header[6]}}</label>
-                                    <input type="text" class="form-control" id="model" ng-model="vm.product.model">
+                                    <input type="text" class="form-control" id="model" ng-model="vm.product.Model">
                                 </div>
                                 <div class="form-group col-xs-6">
                                         <label for="manufacturer">{{vm.header[7]}}</label>
-                                        <input type="text" class="form-control" id="manufacturer" ng-model="vm.product.manufacturer">
+                                        <input type="text" class="form-control" id="manufacturer" ng-model="vm.product.Manufacturer">
                                 </div>
                         </div>
                         <div class="row">
@@ -69,9 +69,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in vm.product'>
-                                <td>{{product.Codigo}}</td>
-                                <td>{{product.CodigoDeBarras}}</td>
+                            <tr ng-repeat='product in vm.products'>
+                                <td>{{product.Code}}</td>
+                                <td>{{product.Barcode}}</td>
                                 <td>{{product.Name}}</td>
                                 <td>{{product.Description}}</td>
                                 <td>{{product.LastCost}}</td>

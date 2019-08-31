@@ -57,7 +57,7 @@
                     if(response.data.error){
                         alert('Hubo un error al cargar los productos');
                     }else{
-                        vm.product = response.data.data;
+                        vm.products = response.data.data;
                         console.log(vm.product);
                     }
                 }
@@ -69,7 +69,7 @@
         }
 
         vm.saveProduct = () => {
-            if(vm.product.Code && vm.product.BarCode && vm.product.Name && vm.product.Description && vm.product.LastCost && vm.product.Brand && vm.product.Model && vm.product.Manufacturer){
+            if(vm.product.Code && vm.product.Barcode && vm.product.Name && vm.product.Description && vm.product.LastCost && vm.product.Brand && vm.product.Model && vm.product.Manufacturer){
                 if(vm.product.id){
                     productService.update(vm.product, success, error);
                 }else{
