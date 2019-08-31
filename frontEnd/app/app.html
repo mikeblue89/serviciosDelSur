@@ -7,21 +7,30 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">
-				<i class="glyphicon glyphicon-home"></i>
-				Home
-			</a>
-			<a class="navbar-brand" href="#" ng-click="vm.logout()">
-				<i class="fas fa-sign-out-alt"></i>
-				Log Out
-			</a>
-        </div>
+		</div>
 
         <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
             <ul class="nav navbar-nav" ng-repeat="item in vm.navbarItems">
-                <li ng-if = "!item.abstract"><a ui-sref= "{{item.name}}" ui-sref-active="active">{{item.tittle}}</a></li>
-            </ul>
-        </div>
-    </nav>
+				<li ng-if = "!item.abstract || item.titlle == 'Login'">
+					<a ui-sref= "{{item.name}}" ui-sref-active="active">
+						<i ng-class="vm.icon(item.title)"></i>
+						{{item.title}}
+					</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+					<li>
+						<button type="button" class="btn btn-default navbar-btn navbar-right" ng-click="vm.logout()">
+								<i class="fas fa-sign-out-alt"></i>
+								Log Out
+						</button>
+					</li>
+					<li>
+						<a href=""></a>
+					</li>
+				</ul>
+		</div>
+
+	</nav>
     <ui-view></ui-view>
 </div>

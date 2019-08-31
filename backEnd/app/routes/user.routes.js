@@ -17,4 +17,7 @@ module.exports = (app) => {
 
     app.delete('/api/user/:id', verifyToken, users.delete);
 
+    app.get('/api/search', verifyToken, users.search);
+
+
 }
