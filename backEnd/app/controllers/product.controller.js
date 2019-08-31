@@ -86,9 +86,9 @@ exports.findAll = (req, res) => {
 
 //Search by Product Given Data
 exports.findByGivenData = (req, res) => {
-    Product.findOne(req.params.parameter)
-        .then (Product => {
-            if (!Product) {
+    Product.findById(req.params.CodigoDeBarras)
+        .then (product => {
+            if (!product) {
                 let response = { "status": "error", "message": req.params.parameter + " with product.", "error": true, "data": undefined};
                 return wrapper.sendResponse({method: "GET /api/product/find" + req.params.parameter, response: response, httpCode: 500, res: res});
             } else {
