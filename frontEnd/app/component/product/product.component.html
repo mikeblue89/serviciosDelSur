@@ -1,7 +1,87 @@
 <ui-view></ui-view>
 
-<div class="container-fluid">
-    <table class="table table-striped">
-        
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col">
+                <form>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="code">{{vm.header[0]}}</label>
+                                <input type="text" class="form-control" id="code" ng-model="vm.product.code">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                    <label for="barCode">{{vm.header[1]}}</label>
+                                    <input type="text" class="form-control" id="barCode" ng-model="vm.product.barCode">
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="name">{{vm.header[2]}}</label>
+                                    <input type="text" class="form-control" id="name" ng-model="vm.product.name">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                        <label for="description">{{vm.header[3]}}</label>
+                                        <input type="text" class="form-control" id="description" ng-model="vm.product.description">
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="lastCost">{{vm.header[4]}}</label>
+                                    <input type="text" class="form-control" id="lastCost" ng-model="vm.product.lastCost">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                        <label for="brand">{{vm.header[5]}}</label>
+                                        <input type="text" class="form-control" id="brand" ng-model="vm.product.brand">
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="model">{{vm.header[6]}}</label>
+                                    <input type="text" class="form-control" id="model" ng-model="vm.product.model">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                        <label for="manufacturer">{{vm.header[7]}}</label>
+                                        <input type="text" class="form-control" id="manufacturer" ng-model="vm.product.manufacturer">
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-xs-12">
+                                    <button id="button" type="submit" class="btn btn-success" ng-click="vm.saveProduct()">
+                                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                                        <span>&nbsp;&nbsp;Guardar</span>
+                                    </button>
+                                    <button id="button" type="submit" class="btn btn-default" ng-click="vm.startProduct()">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        <span>&nbsp;&nbsp;Limpiar</span>
+                                    </button>
+                                </div>
+                        </div>
+                </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+                <table class="table table-condensed table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col" ng-repeat='header in vm.header'>{{header}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='product in vm.product'>
+                                <td>{{product.Codigo}}</td>
+                                <td>{{product.CodigoDeBarras}}</td>
+                                <td>{{product.Name}}</td>
+                                <td>{{product.Description}}</td>
+                                <td>{{product.LastCost}}</td>
+                                <td>{{product.Brand}}</td>
+                                <td>{{product.Model}}</td>
+                                <td>{{product.Manufacturer}}</td>
+                            </tr>
+                        </tbody>
+                </table>
+        </div>
+    </div>
+
 </div>

@@ -11,7 +11,7 @@
 
         <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
             <ul class="nav navbar-nav" ng-repeat="item in vm.navbarItems">
-				<li ng-if = "!item.abstract || item.titlle == 'Login'">
+				<li ng-if = "!item.abstract && item.title != 'Login'">
 					<a ui-sref= "{{item.name}}" ui-sref-active="active">
 						<i ng-class="vm.icon(item.title)"></i>
 						{{item.title}}

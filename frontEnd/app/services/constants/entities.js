@@ -10,6 +10,16 @@
                 'POST': 'login',
                 'LOGOUT': 'logout'
             }
+        },
+        'product': {
+            'endpoints': {
+                'BASE': 'product',
+                'GET': 'product',
+                'POST': 'product',
+                'PUT': 'product',
+                'DELETE': 'product',
+                'GETMetadata': 'product/metadata'
+            }
         }
     });
 
