@@ -3,18 +3,18 @@ const wrapper = require('../utils/wrapper');
 
 
 let isValid = (provider) => {
-    if (!provider.Nit) {
-        return { isValid: false, propertyInvalid: "Nit" };
-    } else if (!provider.Name){
-        return { isValid: false, propertyInvalid: "Name" };
-    } else if (!provider.Adress){
-        return { isValid: false, propertyInvalid: "Adress" };
-    } else if (!provider.Phone){
-        return { isValid: false, propertyInvalid: "Phone" };
-    } else if (!provider.Email){
-        return { isValid: false, propertyInvalid: "Email" };
-    } else if (!provider.Contact){
-        return { isValid: false, propertyInvalid: "Contact" };
+    if (!provider.nit) {
+        return { isValid: false, propertyInvalid: "nit" };
+    } else if (!provider.name){
+        return { isValid: false, propertyInvalid: "name" };
+    } else if (!provider.adress){
+        return { isValid: false, propertyInvalid: "adress" };
+    } else if (!provider.phone){
+        return { isValid: false, propertyInvalid: "phone" };
+    } else if (!provider.email){
+        return { isValid: false, propertyInvalid: "email" };
+    } else if (!provider.contact){
+        return { isValid: false, propertyInvalid: "contact" };
     } else{
         return {isValid: true, propertyInvalid: undefined}
     }
@@ -32,12 +32,13 @@ exports.create = (req, res) => {
     } else {
     
         const newProvider = new Provider({
-            Nit: req.body.Nit,
-            Name: req.body.Name,
-            Adress: req.body.Adress,    
-            Phone: req.body.Phone,    
-            Email: req.body.Email,
-            Contact: req.body.Contact
+            nit: req.body.nit,
+            name: req.body.name,
+            adress: req.body.adress,    
+            phone: req.body.phone,    
+            email: req.body.email,
+            contact: req.body.contact,
+            
         });
         
 
@@ -126,12 +127,12 @@ exports.update = (req, res) => {
     } else {
          
         const providerToUpdate = {
-            Nit: req.body.Nit,
-            Name: req.body.Name,
-            Adress: req.body.Adress,    
-            Phone: req.body.Phone,    
-            Email: req.body.Email,
-            Contact: req.body.Contact
+            nit: req.body.nit,
+            name: req.body.name,
+            adress: req.body.adress,    
+            phone: req.body.phone,    
+            email: req.body.email,
+            contact: req.body.contact
         };
 
         let validation = isValid(providerToUpdate);

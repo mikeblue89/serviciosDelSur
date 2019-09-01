@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const ClientSchema = mongoose.Schema({
      
-    Nit: Number,
-    Name: String,    
-    Adress: String,    
-    Telephone: Number,
-    Email: String,
-    Contact: String
+    nit: Number,
+    name: String,    
+    adress: String,    
+    telephone: Number,
+    email: String,
+    contact: String
 
 }, {
     timestamps: true

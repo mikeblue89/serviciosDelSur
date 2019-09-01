@@ -3,18 +3,18 @@ const wrapper = require('../utils/wrapper');
 
 
 let isValid = (client) => {
-    if (!client.Nit) {
-        return { isValid: false, propertyInvalid: "Nit" };
-    }  else if (!client.Name){
-        return { isValid: false, propertyInvalid: "Name" };
-    } else if (!client.Adress){
-        return { isValid: false, propertyInvalid: "Adress" };
-    } else if (!client.Telephone){
-        return { isValid: false, propertyInvalid: "Telephone" };
-    } else if (!client.Email){
-        return { isValid: false, propertyInvalid: "Email" };
-    } else if (!client.Contact){
-        return { isValid: false, propertyInvalid: "Contact" };
+    if (!client.nit) {
+        return { isValid: false, propertyInvalid: "nit" };
+    }  else if (!client.name){
+        return { isValid: false, propertyInvalid: "name" };
+    } else if (!client.adress){
+        return { isValid: false, propertyInvalid: "adress" };
+    } else if (!client.telephone){
+        return { isValid: false, propertyInvalid: "telephone" };
+    } else if (!client.email){
+        return { isValid: false, propertyInvalid: "email" };
+    } else if (!client.contact){
+        return { isValid: false, propertyInvalid: "contact" };
     } else{
         return {isValid: true, propertyInvalid: undefined}
     }
@@ -32,12 +32,12 @@ exports.create = (req, res) => {
     } else {
     
         const newClient = new Client({
-            Nit: req.body.Nit,
-            Name: req.body.Name,    
-            Adress: req.body.Adress,    
-            Telephone: req.body.Telephone,
-            Email: req.body.Email,
-            Contact: req.body.Contact
+            nit: req.body.nit,
+            name: req.body.name,    
+            adress: req.body.adress,    
+            telephone: req.body.telephone,
+            email: req.body.email,
+            contact: req.body.contact
         });
         
 
@@ -126,12 +126,12 @@ exports.update = (req, res) => {
     } else {
          
         const clientToUpdate = {
-            Nit: req.body.Nit,
-            Name: req.body.Name,    
-            Adress: req.body.Adress,    
-            Telephone: req.body.Telephone,
-            Email: req.body.Email,
-            Contact: req.body.Contact
+            nit: req.body.nit,
+            name: req.body.name,    
+            adress: req.body.adress,    
+            telephone: req.body.telephone,
+            email: req.body.email,
+            contact: req.body.contact
         };
 
         let validation = isValid(clientToUpdate);
