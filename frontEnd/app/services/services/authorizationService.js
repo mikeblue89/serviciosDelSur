@@ -7,7 +7,7 @@
         let entityService = new EntityService('authorization');
 
         this.authenticatedUser = () => {
-            return (isAValidToken() && this.getuserData() && this.getuserData().codigoEmpleado);
+            return (isAValidToken() && this.getuserData() && this.getuserData().employeeCode);
         }
 
         this.getuserData = () => {

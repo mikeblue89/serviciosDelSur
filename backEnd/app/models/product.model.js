@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
      
-    Code: Number,
-    Barcode: String,
-    Name: String,    
-    Description: String,    
-    LastCost: Number,
-    Brand: String,
-    Model: String,
-    Manufacturer: String
+    code: Number,
+    barcode: String,
+    name: String,    
+    description: String,    
+    lastCost: Number,
+    brand: String,
+    model: String,
+    manufacturer: String
 
 }, {
     timestamps: true

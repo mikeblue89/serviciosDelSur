@@ -23,7 +23,7 @@
         }
 
         vm.logIn = ()=>{
-            $authorizationService.login({codigoEmpleado: vm.codigoEmpleado, password: vm.password},onSuccess);
+            $authorizationService.login({employeeCode: vm.employeeCode, password: vm.password},onSuccess);
         }
 
     };

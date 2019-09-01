@@ -27,7 +27,7 @@
                     title: "Login",
                     url: "/login",
                     template: "<login-component></login-component>",
-                    data: { css: ['css/customStyle.css'] }
+                    data: { css: ['app/css/customStyle.css'] }
                 }
             },
             {
@@ -41,12 +41,11 @@
                 }
             },
             {
-                name: "product",
+                name: "app.product",
                 options: {
                     title: "Product",
                     url: "/product",
                     template: "<product-component></product-component>",
-                    data: { css: ['css/customStyle.css'] }
                 }
             }
         ];
