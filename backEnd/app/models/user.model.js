@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const UserSchema = mongoose.Schema({
      
-    codigoEmpleado: Number,
+    employeeCode: Number,
     name: String,
     lastName: String,    
     nit: Number,    
-    numeroCuenta: Number,
-    telefono: Number,
+    accountNumber: Number,
+    phone: Number,
     email: String,
     nick: String,
     password: String,

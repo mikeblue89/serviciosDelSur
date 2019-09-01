@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const ProviderSchema = mongoose.Schema({
      
-    Nit: Number,
-    Name: String,    
-    Adress: String,    
-    Phone: Number,
-    Email: String,
-    Contact: String
+    nit: Number,
+    name: String,    
+    adress: String,    
+    phone: Number,
+    email: String,
+    contact: String
 
 }, {
     timestamps: true

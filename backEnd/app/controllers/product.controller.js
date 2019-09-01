@@ -3,22 +3,22 @@ const wrapper = require('../utils/wrapper');
 
 
 let isValid = (product) => {
-    if (!product.Code) {
-        return { isValid: false, propertyInvalid: "Code" };
-    } else if (!product.Barcode){
-        return { isValid: false, propertyInvalid: "Barcode" };
-    } else if (!product.Name){
-        return { isValid: false, propertyInvalid: "Name" };
-    } else if (!product.Description){
-        return { isValid: false, propertyInvalid: "Description" };
-    } else if (!product.LastCost){
-        return { isValid: false, propertyInvalid: "LastCost" };
-    } else if (!product.Brand){
-        return { isValid: false, propertyInvalid: "Brand" };
-    } else if (!product.Model){
-        return { isValid: false, propertyInvalid: "Model" };
-    } else if (!product.Manufacturer){
-        return { isValid: false, propertyInvalid: "Manufacturer" };
+    if (!product.code) {
+        return { isValid: false, propertyInvalid: "code" };
+    } else if (!product.barcode){
+        return { isValid: false, propertyInvalid: "barcode" };
+    } else if (!product.name){
+        return { isValid: false, propertyInvalid: "name" };
+    } else if (!product.description){
+        return { isValid: false, propertyInvalid: "description" };
+    } else if (!product.lastCost){
+        return { isValid: false, propertyInvalid: "lastCost" };
+    } else if (!product.brand){
+        return { isValid: false, propertyInvalid: "brand" };
+    } else if (!product.model){
+        return { isValid: false, propertyInvalid: "model" };
+    } else if (!product.manufacturer){
+        return { isValid: false, propertyInvalid: "manufacturer" };
     } else{
         return {isValid: true, propertyInvalid: undefined}
     }
@@ -36,14 +36,14 @@ exports.create = (req, res) => {
     } else {
     
         const newProduct = new Product({
-            Code: req.body.Code,
-            Barcode: req.body.Barcode,
-            Name: req.body.Name,    
-            Description: req.body.Description,    
-            LastCost: req.body.LastCost,
-            Brand: req.body.Brand,
-            Model: req.body.Model,
-            Manufacturer: req.body.Manufacturer
+            code: req.body.code,
+            barcode: req.body.barcode,
+            name: req.body.name,    
+            description: req.body.description,    
+            lastCost: req.body.lastCost,
+            brand: req.body.brand,
+            model: req.body.model,
+            manufacturer: req.body.manufacturer
         });
         
 
@@ -132,14 +132,14 @@ exports.update = (req, res) => {
     } else {
          
         const productToUpdate = {
-            Code: req.body.Code,
-            Barcode: req.body.Barcode,
-            Name: req.body.Name,    
-            Description: req.body.Description,    
-            LastCost: req.body.LastCost,
-            Brand: req.body.Brand,
-            Model: req.body.Model,
-            Manufacturer: req.body.Manufacturer
+            code: req.body.code,
+            barcode: req.body.barcode,
+            name: req.body.name,    
+            description: req.body.description,    
+            lastCost: req.body.lastCost,
+            brand: req.body.brand,
+            model: req.body.model,
+            manufacturer: req.body.manufacturer
         };
 
         let validation = isValid(productToUpdate);
@@ -148,10 +148,10 @@ exports.update = (req, res) => {
             return wrapper.sendResponse({ method: "PUT /api/product", response: response, httpCode: 400, res: res });
         } else {
            
-            Product.findByIdAndUpdate(req.body.codigoEmpleado, productToUpdate, { new: true, upsert: true })
+            Product.findByIdAndUpdate(req.body.employeeCode, productToUpdate, { new: true, upsert: true })
                 .then(product => {
                     if (!product) {
-                        let response = { "status": "error", "message": "Some error ocurred while updating the product with id" + req.body.codigoEmpleado, "error": true, "data": undefined };
+                        let response = { "status": "error", "message": "Some error ocurred while updating the product with id" + req.body.employeeCode, "error": true, "data": undefined };
                         return wrapper.sendResponse({ method: "PUT /api/product", response: response, httpCode: 404, res: res });
                     } else {
                         let response = { "status": "ok", "message": "Product updated successfully", "error": false, "data": product };

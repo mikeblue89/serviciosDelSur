@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const config = require('../auth/secrets');
 
 exports.login = (req, res) => {
-    User.findOne({ codigoEmpleado : req.body.codigoEmpleado }, (error, user) => {
+    User.findOne({ employeeCode : req.body.employeeCode }, (error, user) => {
         if (error) {
             let response = { "status": "error", "message": "Some error occurred while login the User", "error": true, "data": error.message || undefined };
             return wrapper.sendResponse({ method: "POST /api/login", response: response, httpCode: 500, res: res });
@@ -21,8 +21,8 @@ exports.login = (req, res) => {
             } else {
                                                                                       
             
-                let token = jwt.sign({ codigoEmpleado: user.codigoEmpleado, name: user.name, lastName: user.lastName, 
-                    nit: user.nit, numeroCuenta: user.numeroCuenta, telefono: user.telefono, email: user.email,
+                let token = jwt.sign({ employeeCode: user.employeeCode, name: user.name, lastName: user.lastName, 
+                    nit: user.nit, accountNumber: user.accountNumber, phone: user.phone, email: user.email,
                      nick: user.nick, password: user.password, roles: user.roles}, 
                 config.secret, {
                      

@@ -4,18 +4,18 @@ const bcrypt = require('bcryptjs');
 
 let isValid = (user) => {
 
-    if (!user.codigoEmpleado) {
-        return { isValid: false, propertyInvalid: "codigoEmpleado" };
+    if (!user.employeeCode) {
+        return { isValid: false, propertyInvalid: "employeeCode" };
     } else if (!user.name) {
         return { isValid: false, propertyInvalid: "name" };
     } else if (!user.lastName) {
         return { isValid: false, propertyInvalid: "lastName" };
     }else if (!user.nit) {
         return { isValid: false, propertyInvalid: "nit" };
-    }else if (!user.numeroCuenta) {
-        return { isValid: false, propertyInvalid: "numeroCuenta" };
-    }else if (!user.telefono) {
-        return { isValid: false, propertyInvalid: "telefono" };
+    }else if (!user.accountNumber) {
+        return { isValid: false, propertyInvalid: "accountNumber" };
+    }else if (!user.phone) {
+        return { isValid: false, propertyInvalid: "phone" };
     }else if (!user.email) {
         return { isValid: false, propertyInvalid: "email" };
     }else if (!user.nick) {
@@ -42,12 +42,12 @@ exports.create = (req, res) => {
     } else {
     
         const newUser = new User({
-            codigoEmpleado: req.body.codigoEmpleado,
+            employeeCode: req.body.employeeCode,
             name: req.body.name,
             lastName: req.body.lastName,    
             nit: req.body.nit,    
-            numeroCuenta: req.body.numeroCuenta,
-            telefono: req.body.telefono,
+            accountNumber: req.body.accountNumber,
+            phone: req.body.phone,
             email: req.body.email,
             nick: req.body.nick,
             password: req.body.password,
@@ -154,12 +154,12 @@ exports.update = (req, res) => {
     } else {
          
         const userToUpdate = {
-            codigoEmpleado: req.body.codigoEmpleado,
+            employeeCode: req.body.employeeCode,
             name: req.body.name,
             lastName: req.body.lastName,    
             nit: req.body.nit,    
-            numeroCuenta: req.body.numeroCuenta,
-            telefono: req.body.telefono,
+            accountNumber: req.body.accountNumber,
+            phone: req.body.phone,
             email: req.body.email,
             nick: req.body.nick,
             password: req.body.password,
@@ -175,10 +175,10 @@ exports.update = (req, res) => {
             
             newUser.password = bcrypt.hashSync(newUser.password, 8);
            
-            User.findByIdAndUpdate(req.body.codigoEmpleado, userToUpdate, { new: true, upsert: true })
+            User.findByIdAndUpdate(req.body.employeeCode, userToUpdate, { new: true, upsert: true })
                 .then(user => {
                     if (!user) {
-                        let response = { "status": "error", "message": "Some error ocurred while updating the user with id" + req.body.codigoEmpleado, "error": true, "data": undefined };
+                        let response = { "status": "error", "message": "Some error ocurred while updating the user with id" + req.body.employeeCode, "error": true, "data": undefined };
                         return wrapper.sendResponse({ method: "PUT /api/user", response: response, httpCode: 404, res: res });
                     } else {
                         let response = { "status": "ok", "message": "User updated successfully", "error": false, "data": user };
