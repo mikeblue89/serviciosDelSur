@@ -69,7 +69,7 @@
         }
 
         vm.saveProduct = () => {
-            if(vm.product.Code && vm.product.BarCode && vm.product.Name && vm.product.Description && vm.product.LastCost && vm.product.Brand && vm.product.Model && vm.product.Manufacturer){
+            if(vm.product.code && vm.product.barcode && vm.product.name && vm.product.description && vm.product.lastCost && vm.product.brand && vm.product.model && vm.product.manufacturer){
                 if(vm.product.id){
                     productService.update(vm.product, success, error);
                 }else{
