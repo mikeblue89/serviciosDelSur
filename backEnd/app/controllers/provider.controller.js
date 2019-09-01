@@ -3,22 +3,18 @@ const wrapper = require('../utils/wrapper');
 
 
 let isValid = (provider) => {
-    if (!provider.Code) {
-        return { isValid: false, propertyInvalid: "Code" };
-    } else if (!provider.Barcode){
-        return { isValid: false, propertyInvalid: "Barcode" };
+    if (!provider.Nit) {
+        return { isValid: false, propertyInvalid: "Nit" };
     } else if (!provider.Name){
         return { isValid: false, propertyInvalid: "Name" };
-    } else if (!provider.Description){
-        return { isValid: false, propertyInvalid: "Description" };
-    } else if (!provider.LastCost){
-        return { isValid: false, propertyInvalid: "LastCost" };
-    } else if (!provider.Brand){
-        return { isValid: false, propertyInvalid: "Brand" };
-    } else if (!provider.Model){
-        return { isValid: false, propertyInvalid: "Model" };
-    } else if (!provider.Manufacturer){
-        return { isValid: false, propertyInvalid: "Manufacturer" };
+    } else if (!provider.Adress){
+        return { isValid: false, propertyInvalid: "Adress" };
+    } else if (!provider.Phone){
+        return { isValid: false, propertyInvalid: "Phone" };
+    } else if (!provider.Email){
+        return { isValid: false, propertyInvalid: "Email" };
+    } else if (!provider.Contact){
+        return { isValid: false, propertyInvalid: "Contact" };
     } else{
         return {isValid: true, propertyInvalid: undefined}
     }
@@ -36,14 +32,12 @@ exports.create = (req, res) => {
     } else {
     
         const newProvider = new Provider({
-            Code: req.body.Code,
-            Barcode: req.body.Barcode,
-            Name: req.body.Name,    
-            Description: req.body.Description,    
-            LastCost: req.body.LastCost,
-            Brand: req.body.Brand,
-            Model: req.body.Model,
-            Manufacturer: req.body.Manufacturer
+            Nit: req.body.Nit,
+            Name: req.body.Name,
+            Adress: req.body.Adress,    
+            Phone: req.body.Phone,    
+            Email: req.body.Email,
+            Contact: req.body.Contact
         });
         
 
@@ -132,14 +126,12 @@ exports.update = (req, res) => {
     } else {
          
         const providerToUpdate = {
-            Code: req.body.Code,
-            Barcode: req.body.Barcode,
-            Name: req.body.Name,    
-            Description: req.body.Description,    
-            LastCost: req.body.LastCost,
-            Brand: req.body.Brand,
-            Model: req.body.Model,
-            Manufacturer: req.body.Manufacturer
+            Nit: req.body.Nit,
+            Name: req.body.Name,
+            Adress: req.body.Adress,    
+            Phone: req.body.Phone,    
+            Email: req.body.Email,
+            Contact: req.body.Contact
         };
 
         let validation = isValid(providerToUpdate);
