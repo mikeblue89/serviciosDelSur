@@ -57,7 +57,7 @@
                     if(response.data.error){
                         alert('Hubo un error al cargar los productos');
                     }else{
-                        vm.product = response.data.data;
+                        vm.products = response.data.data;
                         console.log(vm.product);
                     }
                 }

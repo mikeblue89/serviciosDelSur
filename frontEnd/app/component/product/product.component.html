@@ -11,7 +11,7 @@
                             </div>
                             <div class="form-group col-xs-6">
                                     <label for="barCode">{{vm.header[1]}}</label>
-                                    <input type="text" class="form-control" id="barCode" ng-model="vm.product.barCode">
+                                    <input type="text" class="form-control" id="barCode" ng-model="vm.product.barcode">
                             </div>
                         </div>
                         <div class="row">
@@ -69,7 +69,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat='product in vm.product'>
+                            <tr ng-repeat='product in vm.products'>
                                 <td>{{product.code}}</td>
                                 <td>{{product.barcode}}</td>
                                 <td>{{product.name}}</td>
