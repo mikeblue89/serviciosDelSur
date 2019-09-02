@@ -48,6 +48,23 @@
                     template: "<product-component></product-component>",
                 }
             }
+            ,
+            {
+                name: "app.provider",
+                options: {
+                    title: "Provider",
+                    url: "/provider",
+                    template: "<provider-component></provider-component>",
+                }
+            },
+            {
+                name: "app.client",
+                options: {
+                    title: "Client",
+                    url: "/client",
+                    template: "<client-component></client-component>",
+                }
+            }
         ];
 
         states.forEach(state => $stateProvider.state(state.name, state.options));
