@@ -90,6 +90,14 @@
             loadData();
         }
 
+        vm.hide = (itemToHide)=>{
+            if(itemToHide != false){
+                return itemToHide = true;
+            }else{
+                return itemToHide = false;
+            }
+        }
+
         let success = (response)=>{response.data.message}
         let error = (response)=>{response.data.message}
 

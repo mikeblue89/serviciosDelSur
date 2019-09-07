@@ -46,6 +46,7 @@
                     title: "Product",
                     url: "/product",
                     template: "<product-component></product-component>",
+                    data: { css: ['app/css/productStyle.css'] }
                 }
             }
             ,
@@ -124,6 +125,12 @@
                 }
                 case 'Product':{
                     return 'fab fa-product-hunt';
+                }
+                case 'Provider':{
+                    return 'fas fa-truck-loading'
+                }
+                case 'Client':{
+                    return 'fas fa-suitcase'
                 }
                 default:{
                     return '';

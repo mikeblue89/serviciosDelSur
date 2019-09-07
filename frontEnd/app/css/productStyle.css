@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Montserrat&display=swap');
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Montserrat';
+    list-style: none;
+    text-decoration: none;
+}
+
+.left{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.right{
+    position: absolute;
+    top: 10%;
+    left: 20%;
+}
+
+.menu{
+    width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.item{
+    border-top: 1px solid #636e72;
+    overflow: hidden;
+}
+
+.btn-custom{
+    display: block;
+    padding: 16px 20px;
+    background: #222222;
+    color: white;
+    position: relative;
+}
+
+.btn:before{
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    left: 20 px;
+}
+
+.btn i{
+    margin-right: 10px;
+}
