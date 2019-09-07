@@ -20,7 +20,18 @@
                 'DELETE': 'product',
                 'GETMetadata': 'product/metadata'
             }
+        },
+        'purchase': {
+            'endpoints': {
+                'BASE': 'purchase',
+                'GET': 'purchase',
+                'POST': 'purchase',
+                'PUT': 'purchase',
+                'DELETE': 'purchase',
+                'GETMetadata': 'purchase/metadata'
+            }
         }
+
     });
 
 })();
