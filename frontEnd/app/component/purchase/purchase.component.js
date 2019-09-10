@@ -62,7 +62,7 @@
                 animation: vm.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                templateUrl: 'app/controller/home/home.html',
+                templateUrl: 'app/component/purchase/productPopup/prod-popup.html',
                 controller: function ($uibModalInstance, items) {
                     var vm = this;
                         vm.items = items;
