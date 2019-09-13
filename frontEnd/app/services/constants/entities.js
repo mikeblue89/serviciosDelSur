@@ -11,6 +11,17 @@
                 'LOGOUT': 'logout'
             }
         },
+        'user': {
+            'endpoints': {
+                'BASE': 'user',
+                'GET': 'user',
+                'POST': 'user',
+                'PUT': 'user',
+                'DELETE': 'user',
+                'GETMetadata': 'user/metadata'
+            }
+        }  
+        ,
         'product': {
             'endpoints': {
                 'BASE': 'product',
@@ -19,6 +30,16 @@
                 'PUT': 'product',
                 'DELETE': 'product',
                 'GETMetadata': 'product/metadata'
+            }
+        },
+        'provider': {
+            'endpoints': {
+                'BASE': 'provider',
+                'GET': 'provider',
+                'POST': 'provider',
+                'PUT': 'provider',
+                'DELETE': 'provider',
+                'GETMetadata': 'provider/metadata'
             }
         },
         'purchase': {

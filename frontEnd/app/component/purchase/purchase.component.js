@@ -11,7 +11,8 @@
         vm.test = 'this is my test result';
         let purchaseService;
         let productService;
-        /*let userService;*/
+        let userService;
+        let providerService;
 
         vm.$onInit = function () {
             checkSession();
@@ -28,19 +29,19 @@
         let setDefaults = ()=>{
             purchaseService = new EntityService('purchase');
             productService = new EntityService('product');
-            /*userService = new EntityService('authorization');*/
+            userService = new EntityService('user');
+            providerService = new EntityService('provider');
             loadData();
-            /*vm.startPurchase();*/
+            vm.startPurchase();
+            
         }
 
         let loadData = ()=>{
             loadHeaders();
-            loadpurchases();
             loadProducts();
-            /*loadUsers();*/
+            loadUsers();
+            loadProviders();
         }
-
-
 
         let loadHeaders = ()=>{
             purchaseService.loadMetadata(
@@ -60,52 +61,32 @@
                 }
             );
         }
-
-        let loadpurchases = ()=>{
-            purchaseService.get(
-                (response)=>{
-                    if(response.data.error){
-                        alert('Hubo un error al cargar las compras');
-                    }else{
-                        vm.purchases = response.data.data;
-                        console.log(vm.purchase);
-                    }
-                }
-            );
-        }
-
-        /*let loadUsers = ()=>{
+        let loadUsers = ()=>{
             userService.get(
                 (response)=>{
                     if(response.data.error){
                         alert('Hubo un error al cargar los usuarios');
                     }else{
-                        vm.users = response.data.data;
-                        console.log(vm.user);
+                        vm.users= response.data.data;
+                        
                     }
                 }
             );
-        }*/
-
-        vm.startPurchase = ()=>{
-            vm.purchase = {};
         }
-        
-        vm.savePurchase = () => {
-            console.log ('doing something')
-            if(vm.purchase.no && vm.purchase.barcode.billno && vm.purchase.date && vm.purchase.retdate && vm.purchase.user && vm.purchase.provider){
-                if(vm.purchase.id){
-                    purchaseService.update(vm.purchase, success, error);
-                }else{
-                    purchaseService.save(vm.purchase, success, error);
+
+        let loadProviders = ()=>{
+            providerService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los proveedores');
+                    }else{
+                        vm.providers= response.data.data;
+                
+                    }
                 }
-
-                loadData();
-                vm.startPurchase();
-            }
+            );
         }
 
-        /* Load Products */
         let loadProducts = ()=>{
             productService.get(
                 (response)=>{
@@ -119,9 +100,25 @@
             );
         }
 
-        /* - Load Products */
+        vm.startPurchase = ()=>{
+            vm.purchase = {};
+        }
 
+        vm.savePurchase = () => {
+            console.log(vm.purchase.provider);
+            if(vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.user && vm.purchase.provider){
+                console.log("it's getting hereleve 2");
+                if(vm.purchase.id){
+                    purchaseService.update(vm.purchase, success, error);
+                }else{
+                    purchaseService.save(vm.purchase, success, error);
+                }
+                console.log("it's getting here level 3");
 
+                loadData();
+                vm.startPurchase();
+            }
+        }
 
         /* --- pop up  ---*/
 
@@ -147,8 +144,8 @@
                 }
               });
         }
-
-        
+        let success = (response)=>{response.data.message}
+        let error = (response)=>{response.data.message}
 
       /*  this.modalUpdate = function (size, selectedProduct) {
             

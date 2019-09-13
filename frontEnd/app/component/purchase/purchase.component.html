@@ -9,11 +9,11 @@
                         <div class="row">
                             <div class="form-group col-xs-6">
                                 <label for="code">{{vm.header[0]}} /purchase no</label>
-                                <input type="number" class="form-control" id="code" ng-model="vm.purchase.no">
+                                <input type="number" class="form-control" id="code" ng-model="vm.purchase.purchaseNo ">
                             </div>
                             <div class="form-group col-xs-6">
                                     <label for="barCode">{{vm.header[1]}} /bill no</label>
-                                    <input type="number" class="form-control" id="barCode" ng-model="vm.purchase.billno">
+                                    <input type="number" class="form-control" id="barCode" ng-model="vm.purchase.billNo">
                             </div>
                         </div>
                         <div class="row">
@@ -23,21 +23,23 @@
                                 </div>
                                 <div class="form-group col-xs-6">
                                         <label for="description">{{vm.header[3]}} /return date</label>
-                                        <input type="date" class="form-control" id="description" ng-model="vm.purchase.retdate">
+                                        <input type="date" class="form-control" id="description" ng-model="vm.purchase.returnDate">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
                                     <label for="lastCost">{{vm.header[4]}} /user</label>
-                                    <select type="text" class="form-control" id="user" ng-model="vm.purchase.user">
-                                            <li ng-repeat='product in vm.products' [value]="type.user">
-                                                    {{product.name}}
-                                            </li>
+                                    {{vm.purchase.user}}
+                                    <select type="text" class="form-control" id="user"   ng-model="vm.purchase.user">
+                                            <option ng-repeat='user in vm.users' value="{{user}}">{{user.name}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-xs-6">
                                         <label for="brand">{{vm.header[5]}} /provider</label>
-                                        <input type="text" class="form-control" id="brand" ng-model="vm.purchase.provider">
+                                        {{vm.purchase.provider}}
+                                        <select type="text" class="form-control" id="provider"  ng-model="vm.purchase.provider">
+                                            <option ng-repeat='provider in vm.providers' value="{{provider}}" >{{provider.name}}</option>
+                                        </select>
                                 </div>
                         </div>
                         <button id="button" type="submit" class="btn btn-success" ng-click="vm.savePurchase()">
