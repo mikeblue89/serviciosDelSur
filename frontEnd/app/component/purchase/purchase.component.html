@@ -8,49 +8,57 @@
                     <form>
                         <div class="row">
                             <div class="form-group col-xs-6">
-                                <label for="code">{{vm.header[0]}}</label>
-                                <input type="text" class="form-control" id="purchaseno" ng-model="vm.purchase.number">
+                                <label for="code">{{vm.header[0]}} /purchase no</label>
+                                <input type="number" class="form-control" id="code" ng-model="vm.purchase.no">
                             </div>
                             <div class="form-group col-xs-6">
-                                    <label for="barCode">{{vm.header[1]}}</label>
-                                    <input type="text" class="form-control" id="billno" ng-model="vm.purchase.billno">
+                                    <label for="barCode">{{vm.header[1]}} /bill no</label>
+                                    <input type="number" class="form-control" id="barCode" ng-model="vm.purchase.billno">
                             </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
-                                    <label for="name">{{vm.header[2]}}</label>
-                                    <input type="date" class="form-control" id="date" ng-model="vm.purchase.date">
+                                    <label for="name">{{vm.header[2]}} /date</label>
+                                    <input type="date" class="form-control" id="name" ng-model="vm.purchase.date">
                                 </div>
                                 <div class="form-group col-xs-6">
-                                        <label for="description">{{vm.header[3]}}</label>
-                                        <input type="text" class="form-control" id="provider" ng-model="vm.purchase.provider">
+                                        <label for="description">{{vm.header[3]}} /return date</label>
+                                        <input type="date" class="form-control" id="description" ng-model="vm.purchase.retdate">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
-                                    <label for="lastCost">{{vm.header[4]}}</label>
-                                    <input type="date" class="form-control" id="returndate" ng-model="vm.purchase.returndate">
+                                    <label for="lastCost">{{vm.header[4]}} /user</label>
+                                    <select type="text" class="form-control" id="user" ng-model="vm.purchase.user">
+                                            <li ng-repeat='product in vm.products' [value]="type.user">
+                                                    {{product.name}}
+                                            </li>
+                                    </select>
                                 </div>
                                 <div class="form-group col-xs-6">
-                                        <label for="brand">{{vm.header[5]}}</label>
-                                        <input type="text" class="form-control" id="state" ng-model="vm.purchase.state">
+                                        <label for="brand">{{vm.header[5]}} /provider</label>
+                                        <input type="text" class="form-control" id="brand" ng-model="vm.purchase.provider">
                                 </div>
                         </div>
-                        <div class="row">
-                                <div class="form-group col-xs-6">
-                                    <label for="model">{{vm.header[6]}}</label>
-                                    <input type="text" class="form-control" id="user" ng-model="vm.purchase.user">
-                                </div>
-                        </div>
-                        
+                        <button id="button" type="submit" class="btn btn-success" ng-click="vm.savePurchase()">
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                            <span>&nbsp;&nbsp;Guardar</span>
+                        </button>
+                        <button id="button" type="submit" class="btn btn-default" ng-click="vm.startpurchase()">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span>&nbsp;&nbsp;Limpiar</span>
+                        </button>
+
+                    </form>
+
                         <div class="row">
                                 <div class="col-xs-12">
                                     <h3>Detalles de Compra</h3>
                                     <div class="row">
                                             <div class="form-group col-xs-5">
-                                                <label class="col-xs-12" for="model">Producto </label>
+                                                <label class="col-xs-12" for="model">purchaseo </label>
                                                 <input class="col-xs-10"type="text" class="form-control" id="model" ng-model="vm.purchase.model">
-                                                <button id="button"  ng-click="vm.open('lg')" class="btn btn-success" data-toggle="modal" data-target="#modal-purchase" >
+                                                <button id="button"  ng-click="vm.open()" class="btn btn-success" data-toggle="modal" data-target="#modal-purchase" >
                                                     <i class="fa fa-plus-circle center"> </i></button>
                                             </div>
                                             
@@ -65,17 +73,10 @@
                                     </div>
 
 
-                                    <button id="button" type="submit" class="btn btn-success" ng-click="vm.saveProduct()">
-                                        <span class="glyphicon glyphicon-floppy-disk"></span>
-                                        <span>&nbsp;&nbsp;Guardar</span>
-                                    </button>
-                                    <button id="button" type="submit" class="btn btn-default" ng-click="vm.startProduct()">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                        <span>&nbsp;&nbsp;Limpiar</span>
-                                    </button>
+
                                 </div>
                         </div>
-                </form>
+                
                 <div class="modal" id="modal-purchase">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -83,7 +84,7 @@
                                 <button type="button" class="close" data-dismiss="modal">
                                     close
                                 </button>
-                                <h3>Agregar un Producto</h3>
+                                <h3>Agregar un purchaseo</h3>
                             </div>
                             <div class="modal-body">
                                     

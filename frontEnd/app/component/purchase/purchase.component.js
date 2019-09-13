@@ -10,6 +10,8 @@
         let vm = this;
         vm.test = 'this is my test result';
         let purchaseService;
+        let productService;
+        /*let userService;*/
 
         vm.$onInit = function () {
             checkSession();
@@ -25,13 +27,20 @@
 
         let setDefaults = ()=>{
             purchaseService = new EntityService('purchase');
+            productService = new EntityService('product');
+            /*userService = new EntityService('authorization');*/
             loadData();
             /*vm.startPurchase();*/
         }
 
         let loadData = ()=>{
             loadHeaders();
+            loadpurchases();
+            loadProducts();
+            /*loadUsers();*/
         }
+
+
 
         let loadHeaders = ()=>{
             purchaseService.loadMetadata(
@@ -51,6 +60,68 @@
                 }
             );
         }
+
+        let loadpurchases = ()=>{
+            purchaseService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar las compras');
+                    }else{
+                        vm.purchases = response.data.data;
+                        console.log(vm.purchase);
+                    }
+                }
+            );
+        }
+
+        /*let loadUsers = ()=>{
+            userService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los usuarios');
+                    }else{
+                        vm.users = response.data.data;
+                        console.log(vm.user);
+                    }
+                }
+            );
+        }*/
+
+        vm.startPurchase = ()=>{
+            vm.purchase = {};
+        }
+        
+        vm.savePurchase = () => {
+            console.log ('doing something')
+            if(vm.purchase.no && vm.purchase.barcode.billno && vm.purchase.date && vm.purchase.retdate && vm.purchase.user && vm.purchase.provider){
+                if(vm.purchase.id){
+                    purchaseService.update(vm.purchase, success, error);
+                }else{
+                    purchaseService.save(vm.purchase, success, error);
+                }
+
+                loadData();
+                vm.startPurchase();
+            }
+        }
+
+        /* Load Products */
+        let loadProducts = ()=>{
+            productService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los productos');
+                    }else{
+                        vm.products = response.data.data;
+                        console.log(vm.product);
+                    }
+                }
+            );
+        }
+
+        /* - Load Products */
+
+
 
         /* --- pop up  ---*/
 
