@@ -105,8 +105,13 @@
         }
 
         vm.savePurchase = () => {
+            console.log(vm.purchase.user);
             console.log(vm.purchase.provider);
             if(vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.user && vm.purchase.provider){
+
+                vm.purchase.user = JSON.parse(vm.purchase.user);
+                vm.purchase.provider= JSON.parse(vm.purchase.provider);
+
                 console.log("it's getting hereleve 2");
                 if(vm.purchase.id){
                     purchaseService.update(vm.purchase, success, error);
