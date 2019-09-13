@@ -56,6 +56,7 @@
                     title: "Provider",
                     url: "/provider",
                     template: "<provider-component></provider-component>",
+                    data: { css: ['app/css/providerStyle.css'] }
                 }
             },
             {
@@ -64,6 +65,7 @@
                     title: "Client",
                     url: "/client",
                     template: "<client-component></client-component>",
+                    data: { css: ['app/css/clientStyle.css'] }
                 }
             }
         ];

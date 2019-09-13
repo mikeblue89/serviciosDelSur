@@ -2,24 +2,24 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sd-3">
+        <div class="col-xs-3">
             <div class="left">
                 <div class="menu">
                     <li class="item">
-                        <a href="" class="btn-custom" id="addProduct"> <i class="fas fa-plus-square"></i>Agregar productos</a>
+                        <a href="" class="btn-custom" id="addProduct" ng-mousedown = "vm.state == 'form'"><i class="fas fa-plus-square"></i>Agregar productos</a>
                     </li>
                     <li class="item">
-                        <a href="" class="btn-custom" id="editProduct"><i class="fas fa-pen-square"></i>Editar producto</a>
+                        <a href="" class="btn-custom" id="editProduct" ng-mousedown = "vm.state == 'table'"><i class="fas fa-pen-square"></i>Editar producto</a>
                     </li>
                     <li class="item">
-                        <a href="" class="btn-custom" id="deleteProduct" ng-model='hideAddProduct' ng-click="vm.hide(hideAddProduct)"> <i class="fas fa-trash-alt"></i>Eliminar producto</a>
+                        <a href="" class="btn-custom" id="deleteProduct"> <i class="fas fa-trash-alt"></i>Eliminar producto</a>
                     </li>
                 </div>
             </div>
         </div>
 
-        <div class="col-sd-8 right" ng-hide='hideAddProduct'>
-                <div class="row">
+        <div class="col-xs-8 right">
+                <div class="row" ng-show="vm.state == 'form'">
                     <div class="col">
                             <form>
                                     <div class="row">
@@ -69,15 +69,19 @@
                                                     <span>&nbsp;&nbsp;Guardar</span>
                                                 </button>
                                                 <button id="button" type="submit" class="btn btn-default" ng-click="vm.startProduct()">
-                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                    <span class="fas fa-backspace"></span>
                                                     <span>&nbsp;&nbsp;Limpiar</span>
+                                                </button>
+                                                <button id="button" type="submit" class="btn btn-default" ng-click="vm.changeState()">
+                                                        <span class="fas fa-backspace"></span>
+                                                        <span>&nbsp;&nbsp;Editar</span>
                                                 </button>
                                             </div>
                                     </div>
                             </form>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" ng-show="vm.state=='table'">
                     <div class="col">
                             <table class="table table-condensed table-responsive">
                                     <thead>

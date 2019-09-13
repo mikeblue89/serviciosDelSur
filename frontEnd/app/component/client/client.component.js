@@ -1,13 +1,14 @@
-(function (){
+(function () {
     'use strict';
 
-    let clientComponentModule = angular.module("serviciosDelSur");
+    let clientComponentModule = angular.module('serviciosDelSur');
 
-    clientComponentController.$inject = ['$authorizationService', '$state'];
+    clientComponentcontroller.$inject = ['$authorizationService', '$state', 'EntityService'];
 
-    function clientComponentController($authorizationService, $state) {
-
+    function clientComponentcontroller($authorizationService, $state, EntityService){
         let vm = this;
+        let clientService;
+
         vm.$onInit = function () {
             checkSession();
         }
@@ -15,22 +16,93 @@
         const checkSession = ()=>{
             if($authorizationService.authenticatedUser()){
                 $state.go('app.client');
+            }else{
+                $state.go('login');
             }
         }
 
-        const onSuccess = (response)=>{
-            $state.go('app.client');
+        let setDefaults = ()=>{
+            clientService = new EntityService('client');
+            loadData();
+            vm.startClient();
+            vm.state = 'form';
         }
 
-        vm.logIn = ()=>{
-            $authorizationService.client({employeeCode: vm.employeeCode, password: vm.password},onSuccess);
+        let loadData = ()=>{
+            loadHeaders();
+            loadClient();
         }
+
+        let loadHeaders = ()=>{
+            clientService.loadMetadata(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los datos de cabecera');
+                    }else{
+                        vm.header = [];
+                        for(let header in response.data.data){
+                            if(header != "updatedAt" && header != "createdAt" && header != "__v" && header != "_id"){
+                                vm.header.push(header);
+                            }
+                        }
+                    }
+                }
+            );
+        }
+
+        let loadClient = ()=>{
+            clientService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los clientes');
+                    }else{
+                        vm.clients = response.data.data;
+                    }
+                }
+            );
+        }
+
+        vm.startClient = ()=>{
+            vm.client = {};
+        }
+
+        vm.saveClient = () => {
+            if(vm.client.nit && vm.client.name && vm.client.adress && vm.client.phone && vm.client.email && vm.client.contact){
+                if(vm.client.id){
+                    clientService.update(vm.client, success, error);
+                }else{
+                    clientService.save(vm.client, success, error);
+                }
+
+                loadData();
+                vm.startClient();
+            }
+        }
+
+        vm.modifyClient = (client)=>{
+            vm.client = client;
+        }
+
+        vm.deleteClient = ()=>{
+            clientService.delete(index);
+            loadData();
+        }
+
+        vm.changeState = ()=>{
+            vm.state = 'table';
+        }
+
+        let success = (response)=>{response.data.message}
+        let error = (response)=>{response.data.message}
+
+
+        setDefaults();
 
     };
 
     const component = {
         templateUrl: 'app/component/client/client.component.html',
-        controller: clientComponentController,
+        controller: clientComponentcontroller,
         controllerAs: 'vm',
         bindings:
         {
@@ -39,5 +111,5 @@
     };
 
     clientComponentModule.component('clientComponent', component);
-    
+
 })();

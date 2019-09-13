@@ -25,6 +25,7 @@
             productService = new EntityService('product');
             loadData();
             vm.startProduct();
+            vm.state = 'form';
         }
 
         let loadData = ()=>{
@@ -79,6 +80,7 @@
                 loadData();
                 vm.startProduct();
             }
+            vm.state = 'table';
         }
 
         vm.modifyProduct = (product)=>{
@@ -90,17 +92,12 @@
             loadData();
         }
 
-        vm.hide = (itemToHide)=>{
-            if(itemToHide != false){
-                return itemToHide = true;
-            }else{
-                return itemToHide = false;
-            }
+        vm.changeState = ()=>{
+            vm.state = 'table';
         }
 
         let success = (response)=>{response.data.message}
         let error = (response)=>{response.data.message}
-
 
         setDefaults();
 
