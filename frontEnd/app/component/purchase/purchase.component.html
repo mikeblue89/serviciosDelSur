@@ -9,37 +9,37 @@
                         <div class="row">
                             <div class="form-group col-xs-6">
                                 <label for="code">{{vm.header[0]}}</label>
-                                <input type="text" class="form-control" id="code" ng-model="vm.product.code">
+                                <input type="text" class="form-control" id="purchaseno" ng-model="vm.purchase.number">
                             </div>
                             <div class="form-group col-xs-6">
                                     <label for="barCode">{{vm.header[1]}}</label>
-                                    <input type="text" class="form-control" id="barCode" ng-model="vm.product.barcode">
+                                    <input type="text" class="form-control" id="billno" ng-model="vm.purchase.billno">
                             </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
                                     <label for="name">{{vm.header[2]}}</label>
-                                    <input type="text" class="form-control" id="name" ng-model="vm.product.name">
+                                    <input type="date" class="form-control" id="date" ng-model="vm.purchase.date">
                                 </div>
                                 <div class="form-group col-xs-6">
                                         <label for="description">{{vm.header[3]}}</label>
-                                        <input type="text" class="form-control" id="description" ng-model="vm.product.description">
+                                        <input type="text" class="form-control" id="provider" ng-model="vm.purchase.provider">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
                                     <label for="lastCost">{{vm.header[4]}}</label>
-                                    <input type="text" class="form-control" id="lastCost" ng-model="vm.product.lastCost">
+                                    <input type="date" class="form-control" id="returndate" ng-model="vm.purchase.returndate">
                                 </div>
                                 <div class="form-group col-xs-6">
                                         <label for="brand">{{vm.header[5]}}</label>
-                                        <input type="text" class="form-control" id="brand" ng-model="vm.product.brand">
+                                        <input type="text" class="form-control" id="state" ng-model="vm.purchase.state">
                                 </div>
                         </div>
                         <div class="row">
                                 <div class="form-group col-xs-6">
                                     <label for="model">{{vm.header[6]}}</label>
-                                    <input type="text" class="form-control" id="model" ng-model="vm.product.model">
+                                    <input type="text" class="form-control" id="user" ng-model="vm.purchase.user">
                                 </div>
                         </div>
                         
@@ -49,18 +49,18 @@
                                     <div class="row">
                                             <div class="form-group col-xs-5">
                                                 <label class="col-xs-12" for="model">Producto </label>
-                                                <input class="col-xs-10"type="text" class="form-control" id="model" ng-model="vm.product.model">
-                                                <button id="button"  ng-click="vm.open('lg')" class="btn btn-success" data-toggle="modal" data-target="#modal-product" >
+                                                <input class="col-xs-10"type="text" class="form-control" id="model" ng-model="vm.purchase.model">
+                                                <button id="button"  ng-click="vm.open('lg')" class="btn btn-success" data-toggle="modal" data-target="#modal-purchase" >
                                                     <i class="fa fa-plus-circle center"> </i></button>
                                             </div>
                                             
                                             <div class="form-group col-xs-3">
                                                     <label for="model">Cantidad</label>
-                                                    <input type="text" class="form-control" id="model" ng-model="vm.product.model">
+                                                    <input type="text" class="form-control" id="model" ng-model="vm.purchase.model">
                                             </div>
                                             <div class="form-group col-xs-3">
                                                     <label for="model">Costo Unitario</label>
-                                                    <input type="text" class="form-control" id="model" ng-model="vm.product.model">
+                                                    <input type="text" class="form-control" id="model" ng-model="vm.purchase.model">
                                             </div>
                                     </div>
 
@@ -76,7 +76,7 @@
                                 </div>
                         </div>
                 </form>
-                <div class="modal" id="modal-product">
+                <div class="modal" id="modal-purchase">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

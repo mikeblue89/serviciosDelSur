@@ -99,7 +99,7 @@
     };
 
     const component = {
-        templateUrl: 'app/component/product/product.component.html',
+        templateUrl: 'app/component/purchase/product/productPopup/product.component.html',
         controller: productComponentcontroller,
         controllerAs: 'vm',
         bindings:

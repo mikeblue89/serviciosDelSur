@@ -33,6 +33,7 @@
         }
 
         let loadHeaders = ()=>{
+            console.log("headers");
             productService.loadMetadata(
                 (response)=>{
                     if(response.data.error){
