@@ -13,6 +13,8 @@
         let productService;
         let userService;
         let providerService;
+        let purchaseDetails;
+
 
         vm.$onInit = function () {
             checkSession();
@@ -120,10 +122,10 @@
         }
 
         vm.savePurchase = () => {
-            console.log(vm.purchase.user);
-            console.log(vm.purchase.provider);
-            if(vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.state && vm.purchase.user && vm.purchase.provider &&vm.purchase.product && vm.purchase.article && vm.purchase.quantity && vm.purchase.unitCost){
 
+            if(vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.state && vm.purchase.user && vm.purchase.provider &&vm.purchase.product && vm.purchase.article && vm.purchase.quantity && vm.purchase.unitCost){
+                vm.purchase.date = new Date(vm.purchase.date);
+                vm.purchase.returnDate = new Date(vm.purchase.returnDate);
                 vm.purchase.user = JSON.parse(vm.purchase.user);
                 vm.purchase.provider= JSON.parse(vm.purchase.provider);
                 vm.purchase.product= JSON.parse(vm.purchase.product); 
@@ -139,8 +141,16 @@
                 console.log("it's getting here level 3");
 
                 loadData();
+
                 vm.startPurchase();
+
+                /*vm.purchase.purchaseDetails = [];
+                if(purchaseDetails){
+                    vm.purchase.purchaseDetails.push(vm.purchase.product);
+                }*/
             }
+
+
             vm.state = 'table';
         }
 
@@ -170,10 +180,11 @@
         }
 
         vm.modifyPurchase = (purchase)=>{
-
+            purchase.date = new Date(purchase.date);
+            purchase.returnDate = new Date(purchase.returnDate);
             vm.purchase = purchase;
-            vm.purchase.date = vm.purchase.date.getDate() + "/" + vm.purchase.date.getMonth() + "/" + vm.purchase.date.getFullYear();  
-            vm.purchase.returnDate = vm.purchase.returnDate.getDate() + "/" + vm.purchase.returnDate.getMonth() + "/" + vm.purchase.returnDate.getFullYear()
+            // vm.purchase.date = vm.purchase.date.getDate() + "/" + vm.purchase.date.getMonth() + "/" + vm.purchase.date.getFullYear();  
+            // vm.purchase.returnDate = vm.purchase.returnDate.getDate() + "/" + vm.purchase.returnDate.getMonth() + "/" + vm.purchase.returnDate.getFullYear()
             vm.state = 'form';
         }
 

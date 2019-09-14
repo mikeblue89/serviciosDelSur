@@ -44,8 +44,7 @@
 
                         </div>
                         <h3>Detalles de compra</h3>
-                        <div class="row">
-
+                        <div class="row" >
                                 <div class="form-group col-xs-3">
                                     <label for="lastCost">{{vm.header[7]}}</label>
                                     <select type="text" class="form-control" id="product" ng-model="vm.purchase.product"  >
@@ -60,6 +59,7 @@
                                         </select>
                                         -->
                                 </div>
+                                
                             <div class="form-group col-xs-3">
                                     <label for="brand">{{vm.header[9]}}</label>
                                     <input type="number" class="form-control" id="Quantity" ng-model="vm.purchase.quantity">
@@ -68,6 +68,7 @@
                                     <label for="brand">{{vm.header[10]}}</label>
                                     <input type="number" class="form-control" id="unitCost" ng-model="vm.purchase.unitCost">
                             </div>
+
                         </div>
                         <button id="button" type="submit" class="btn btn-success" ng-click="vm.savePurchase()">
                             <span class="glyphicon glyphicon-floppy-disk"></span>
@@ -137,14 +138,16 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat='purchase in vm.purchases'>
+                                <td>{{vm.purchase.purchaseDetails}}</td>
+                                    <td>{{purchase}}</td>
                                 <td>{{purchase.purchaseNo}}</td>
                                 <td>{{purchase.billNo}}</td>
                                 <td>{{purchase.date | date : "dd/MM/y"}}</td>
                                 <td>{{purchase.returnDate | date : "dd/MM/y"}}</td>
                                 <td>{{purchase.state}}</td>
-                                <td>{{purchase.user}}</td>
-                                <td>{{purchase.provider}}</td>
-                                <td>{{purchase.product}}</td>
+                                <td>{{purchase.user.name}}</td>
+                                <td>{{purchase.provider.name}}</td>
+                                <td>{{purchase.product.name}}</td>
                                 <td>{{purchase.article}}</td>
                                 <td>{{purchase.quantity}}</td>
                                 <td>{{purchase.unitCost}}</td>
