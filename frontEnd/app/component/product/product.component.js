@@ -25,7 +25,7 @@
             productService = new EntityService('product');
             loadData();
             vm.startProduct();
-            vm.state = 'form';
+            vm.state = 'table';
         }
 
         let loadData = ()=>{
@@ -45,8 +45,6 @@
                                 vm.header.push(header);
                             }
                         }
-                        console.log(response.data);
-                        console.log(vm.header);
                     }
                 }
             );
@@ -59,7 +57,6 @@
                         alert('Hubo un error al cargar los productos');
                     }else{
                         vm.products = response.data.data;
-                        console.log(vm.product);
                     }
                 }
             );
@@ -71,12 +68,12 @@
 
         vm.saveProduct = () => {
             if(vm.product.code && vm.product.barcode && vm.product.name && vm.product.description && vm.product.lastCost && vm.product.brand && vm.product.model && vm.product.manufacturer){
-                if(vm.product.id){
+                if(vm.product._id){
                     productService.update(vm.product, success, error);
                 }else{
                     productService.save(vm.product, success, error);
                 }
-
+                console.log(vm.product);
                 loadData();
                 vm.startProduct();
             }
@@ -88,14 +85,17 @@
             vm.state = 'form';
         }
 
-        vm.deleteProduct = (index)=>{
-            productService.delete(index);
+        vm.deleteProduct = (id)=>{
+            productService.delete(id);
             loadData();
-            vm.state = 'form';
         }
 
         vm.changeState = ()=>{
-            vm.state = 'table';
+            if(vm.state == 'table'){
+                vm.state = 'form';
+            }else{
+                vm.state = 'table';
+            }
         }
 
         let success = (response)=>{response.data.message}
