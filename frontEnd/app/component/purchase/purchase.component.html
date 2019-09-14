@@ -1,7 +1,7 @@
 <ui-view></ui-view>
 <div class="container">
     <div class="panel">
-            <div class="login_description">
+            <div class="">
                     <h1>Compras</h1>
                     <form>
                         <div class="row">
@@ -124,5 +124,37 @@
                 </div>
 
                 
+    </div>
+</div>
+<!--ng-show="vm.state=='table'"-->
+<div class="row" >
+        <div class="col">
+                <table class="table table-condensed table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col" ng-repeat='header in vm.header'>{{header}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='purchase in vm.purchases'>
+                                <td>{{purchase.purchaseNo}}</td>
+                                <td>{{purchase.billNo}}</td>
+                                <td>{{purchase.date | date : "dd/MM/y"}}</td>
+                                <td>{{purchase.returnDate | date : "dd/MM/y"}}</td>
+                                <td>{{purchase.state}}</td>
+                                <td>{{purchase.user}}</td>
+                                <td>{{purchase.provider}}</td>
+                                <td>{{purchase.product}}</td>
+                                <td>{{purchase.article}}</td>
+                                <td>{{purchase.quantity}}</td>
+                                <td>{{purchase.unitCost}}</td>
+                                <td>
+                                    <button class="btn-primary" ng-click="vm.modifyPurchase(purchase)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-warning" ng-click="vm.deletePurchase(purchase._id)"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                </table>
+        </div>
     </div>
 </div>

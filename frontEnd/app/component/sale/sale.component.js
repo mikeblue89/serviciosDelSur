@@ -10,6 +10,7 @@
         vm.test = 'this is my test result';
         let saleService;
         let productService;
+        let userService;
 
         vm.$onInit = function () {
             checkSession();
@@ -26,6 +27,7 @@
         let setDefaults = ()=>{
             saleService = new EntityService('sale');
             productService = new EntityService('product');
+            userService = new EntityService('user');
             loadData();
             vm.startSale();
             
@@ -33,7 +35,10 @@
 
         let loadData = ()=>{
             loadHeaders();
+            loadSales();
+            loadUsers();
             loadProducts();
+            
         }
 
         let loadHeaders = ()=>{
@@ -68,6 +73,32 @@
             );
         }
 
+        let loadUsers = ()=>{
+            userService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los usuarios');
+                    }else{
+                        vm.users= response.data.data;
+                        
+                    }
+                }
+            );
+        }
+
+        let loadSales = ()=>{
+            saleService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los saleos');
+                    }else{
+                        vm.sales = response.data.data;
+                        console.log(vm.sale);
+                    }
+                }
+            );
+        }
+
         vm.startSale = ()=>{
             vm.sale = {};
         }
@@ -75,11 +106,11 @@
         vm.saveSale = () => {
             console.log(vm.sale.user);
             console.log(vm.sale.provider);
-            if(vm.sale.saleNo && vm.sale.billNo && vm.sale.date && vm.sale.returnDate && vm.sale.state && vm.sale.user && vm.sale.provider &&vm.sale.product && vm.sale.article && vm.sale.quantity && vm.sale.unitCost){
+            if(vm.sale.billNo && vm.sale.date && vm.sale.client && vm.sale.returnDate && vm.sale.discount && vm.sale.state && vm.sale.user && vm.sale.product && vm.sale.article && vm.sale.quantity && vm.sale.unitCost){
 
                 vm.sale.user = JSON.parse(vm.sale.user);
-                vm.sale.provider= JSON.parse(vm.sale.provider);
                 vm.sale.product= JSON.parse(vm.sale.product); 
+                vm.sale.article= JSON.parse(vm.sale.article); 
 
                 console.log("it's getting hereleve 2");
                 if(vm.sale.id){

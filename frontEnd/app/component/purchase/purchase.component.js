@@ -33,6 +33,7 @@
             providerService = new EntityService('provider');
             loadData();
             vm.startPurchase();
+            vm.state = 'form';
             
         }
 
@@ -41,6 +42,7 @@
             loadProducts();
             loadUsers();
             loadProviders();
+            loadPurchases();
         }
 
         let loadHeaders = ()=>{
@@ -57,6 +59,19 @@
                         }
                         console.log(response.data);
                         console.log(vm.header);
+                    }
+                }
+            );
+        }
+        
+        let loadPurchases = ()=>{
+            purchaseService.get(
+                (response)=>{
+                    if(response.data.error){
+                        alert('Hubo un error al cargar los compras');
+                    }else{
+                        vm.purchases= response.data.data;
+                
                     }
                 }
             );
@@ -112,6 +127,8 @@
                 vm.purchase.user = JSON.parse(vm.purchase.user);
                 vm.purchase.provider= JSON.parse(vm.purchase.provider);
                 vm.purchase.product= JSON.parse(vm.purchase.product); 
+                /*vm.purchase.date = vm.purchase.date.toDateString();
+                vm.purchase.returnDate = vm.purchase.returnDate.toDateString();*/
 
                 console.log("it's getting hereleve 2");
                 if(vm.purchase.id){
@@ -124,6 +141,7 @@
                 loadData();
                 vm.startPurchase();
             }
+            vm.state = 'table';
         }
 
         /* --- pop up  ---*/
@@ -152,13 +170,23 @@
         }
 
         vm.modifyPurchase = (purchase)=>{
+
             vm.purchase = purchase;
+            vm.purchase.date = vm.purchase.date.getDate() + "/" + vm.purchase.date.getMonth() + "/" + vm.purchase.date.getFullYear();  
+            vm.purchase.returnDate = vm.purchase.returnDate.getDate() + "/" + vm.purchase.returnDate.getMonth() + "/" + vm.purchase.returnDate.getFullYear()
+            vm.state = 'form';
         }
 
-        vm.deletePurchase = ()=>{
-            purchaseService.delete(index);
+        vm.deletePurchase = (id)=>{
+            purchaseService.delete(id);
             loadData();
+            vm.state = 'form';
         }
+
+        vm.changeState = ()=>{
+            vm.state = 'table';
+        }
+
         let success = (response)=>{response.data.message}
         let error = (response)=>{response.data.message}
 

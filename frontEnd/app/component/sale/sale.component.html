@@ -1,14 +1,113 @@
 <ui-view></ui-view>
 <div class="container">
-    <div class="panel">
-            <div class="login_description col-sm-6 text-center">
-                <h1>Ventas</h1>
-                {{vm.test}}
-                <div class="row">
-                    <div class="form-group col-xs-6">
-                        <label for="code">{{vm.header[0]}}</label>
-                        <input type="text" class="form-control" id="code" ng-model="vm.product.code">
-                    </div>
-                </div>
+
+<h1>Ventas</h1>
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-xs-6">
+                                <label for="code">{{vm.header[0]}}</label>
+                                <input type="number" class="form-control" id="billNo" ng-model="vm.sale.billNo ">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                    <label for="barCode">{{vm.header[1]}}</label>
+                                    <input type="date" class="form-control" id="date" ng-model="vm.sale.date">
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="form-group col-xs-3">
+                                    <label for="name">{{vm.header[2]}}</label>
+                                    <input type="text" class="form-control" id="client" ng-model="vm.sale.client">
+                                </div>
+                                <div class="form-group col-xs-3">
+                                        <label for="description">{{vm.header[3]}}</label>
+                                        <input type="date" class="form-control" id="returnDate" ng-model="vm.sale.returnDate">
+                                </div>
+                                <div class="form-group col-xs-3">
+                                        <label for="lastCost">{{vm.header[4]}}</label>
+                                        <input type="number" class="form-control" id="discount" ng-model="vm.sale.discount">
+                                </div>
+                                <div class="form-group col-xs-3">
+                                        <label for="lastCost">{{vm.header[5]}}</label>
+                                        <input type="text" class="form-control" id="state" ng-model="vm.sale.state">
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="lastCost">{{vm.header[6]}}</label>
+                                    <select type="text" class="form-control" id="user" ng-model="vm.sale.user"  >
+                                                <option ng-repeat='user in vm.users' value="{{user}}">{{user.name}}</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <h3>Detalles de compra</h3>
+                            <div class="row">
+    
+                                    <div class="form-group col-xs-3">
+                                        <label for="lastCost">{{vm.header[7]}}</label>
+                                        <select type="text" class="form-control" id="product" ng-model="vm.sale.product"  >
+                                                    <option ng-repeat='product in vm.products' value="{{product}}">{{product.name}}</option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                            <label for="brand">{{vm.header[8]}}</label>
+                                            <input type="text" class="form-control" id="article" ng-model="vm.sale.article">
+                                            <!--<select type="text" class="form-control" id="article" ng-model="vm.sale.article"  >
+                                                <option ng-repeat='articles in vm.articles' value="{{article}}" >{{provider.name}}</option>
+                                            </select>
+                                            -->
+                                    </div>
+                                <div class="form-group col-xs-3">
+                                        <label for="brand">{{vm.header[9]}}</label>
+                                        <input type="number" class="form-control" id="Quantity" ng-model="vm.sale.quantity">
+                                </div>
+                                <div class="form-group col-xs-3">
+                                        <label for="brand">{{vm.header[10]}}</label>
+                                        <input type="number" class="form-control" id="unitCost" ng-model="vm.sale.unitCost">
+                                </div>
+                            </div>
+                            <button id="button" type="submit" class="btn btn-success" ng-click="vm.saveSale()">
+                                <span class="glyphicon glyphicon-floppy-disk"></span>
+                                <span>&nbsp;&nbsp;Guardar</span>
+                            </button>
+                            <button id="button" type="submit" class="btn btn-default" ng-click="vm.startsale()">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span>&nbsp;&nbsp;Limpiar</span>
+                            </button>
+    
+                        </form>
+
+
+<!--ng-show="vm.state=='table'"-->
+<div class="row" >
+        <div class="col">
+                <table class="table table-condensed table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col" ng-repeat='header in vm.header'>{{header}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat='sale in vm.sales'>
+                                <td>{{sale.saleNo}}</td>
+                                <td>{{sale.billNo}}</td>
+                                <td>{{sale.date | date : "dd/MM/y"}}</td>
+                                <td>{{sale.returnDate | date : "dd/MM/y"}}</td>
+                                <td>{{sale.state}}</td>
+                                <td>{{sale.user}}</td>
+                                <td>{{sale.provider}}</td>
+                                <td>{{sale.product}}</td>
+                                <td>{{sale.article}}</td>
+                                <td>{{sale.quantity}}</td>
+                                <td>{{sale.unitCost}}</td>
+                                <td>
+                                    <button class="btn-primary" ng-click="vm.modifySale(sale)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-warning" ng-click="vm.deleteSale(sale._id)"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                </table>
+        </div>
     </div>
+</div>
+
 </div>
