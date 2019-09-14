@@ -25,7 +25,7 @@
             clientService = new EntityService('client');
             loadData();
             vm.startClient();
-            vm.state = 'form';
+            vm.state = 'table';
         }
 
         let loadData = ()=>{
@@ -89,11 +89,14 @@
         vm.deleteClient = ()=>{
             clientService.delete(index);
             loadData();
-            vm.state = 'form';
         }
 
         vm.changeState = ()=>{
-            vm.state = 'table';
+            if(vm.state == 'table'){
+                vm.state = 'form';
+            }else{
+                vm.state = 'table';
+            }
         }
 
         let success = (response)=>{response.data.message}

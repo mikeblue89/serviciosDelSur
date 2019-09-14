@@ -8,6 +8,10 @@
     text-decoration: none;
 }
 
+.col-xs{
+    display: none;
+}
+
 .left{
     position: absolute;
     top: 120%;

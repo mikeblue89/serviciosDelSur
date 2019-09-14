@@ -25,7 +25,7 @@
             providerService = new EntityService('provider');
             loadData();
             vm.startProvider();
-            vm.state = 'form';
+            vm.state = 'table';
         }
 
         let loadData = ()=>{
@@ -76,6 +76,7 @@
 
                 loadData();
                 vm.startProvider();
+                vm.state = 'table';
             }
         }
 
@@ -84,10 +85,9 @@
             vm.state = 'form';
         }
 
-        vm.deleteProvider = ()=>{
-            providerService.delete(index);
+        vm.deleteProvider = (id)=>{
+            providerService.delete(id);
             loadData();
-            vm.state = 'form';
         }
 
         vm.hide = (itemToHide)=>{
@@ -99,7 +99,11 @@
         }
 
         vm.changeState = ()=>{
-            vm.state = 'table';
+            if(vm.state == 'table'){
+                vm.state = 'form';
+            }else{
+                vm.state = 'table';
+            }
         }
 
         let success = (response)=>{response.data.message}

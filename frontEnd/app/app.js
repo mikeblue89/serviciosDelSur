@@ -87,8 +87,7 @@
         ];
 
         states.forEach(state => $stateProvider.state(state.name, state.options));
-
-        console.log(states);
+        
         $enviromentProvider.setEnviroment(enviroment);
 
         jwtOptionsProvider.config({
