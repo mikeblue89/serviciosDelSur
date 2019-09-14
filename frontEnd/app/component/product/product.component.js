@@ -85,11 +85,13 @@
 
         vm.modifyProduct = (product)=>{
             vm.product = product;
+            vm.state = 'form';
         }
 
-        vm.deleteProduct = ()=>{
+        vm.deleteProduct = (index)=>{
             productService.delete(index);
             loadData();
+            vm.state = 'form';
         }
 
         vm.changeState = ()=>{

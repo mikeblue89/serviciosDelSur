@@ -83,6 +83,10 @@
                                             <td>{{provider.phone}}</td>
                                             <td>{{provider.email}}</td>
                                             <td>{{provider.contact}}</td>
+                                            <td>
+                                                <button class="btn-primary" ng-click="vm.modifyProvider(provider)"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-warning" ng-click="vm.deleteProvider($index)"><i class="fas fa-trash-alt"></i></button>
+                                            </td>
                                         </tr>
                                     </tbody>
                             </table>

@@ -81,11 +81,13 @@
 
         vm.modifyProvider = (provider)=>{
             vm.provider = provider;
+            vm.state = 'form';
         }
 
         vm.deleteProvider = ()=>{
             providerService.delete(index);
             loadData();
+            vm.state = 'form';
         }
 
         vm.hide = (itemToHide)=>{

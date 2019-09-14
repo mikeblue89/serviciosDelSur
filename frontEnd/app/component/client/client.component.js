@@ -76,16 +76,20 @@
 
                 loadData();
                 vm.startClient();
+                
+                vm.state = 'table';
             }
         }
 
         vm.modifyClient = (client)=>{
             vm.client = client;
+            vm.state = 'form';
         }
 
         vm.deleteClient = ()=>{
             clientService.delete(index);
             loadData();
+            vm.state = 'form';
         }
 
         vm.changeState = ()=>{
