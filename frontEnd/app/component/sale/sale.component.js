@@ -1,14 +1,15 @@
-(function () {
-    'use strict';
+(() => {
+    'use strict'
 
     let saleComponentModule = angular.module('serviciosDelSur');
 
-    saleComponentcontroller.$inject = ['$authorizationService', '$state', 'EntityService'];
+    saleComponentcontroller.$inject = ['$authorizationService', '$state', 'EntityService', '$uibModal', '$log'];
 
-    function saleComponentcontroller($authorizationService, $state, EntityService){
+    function saleComponentcontroller($authorizationService, $state, EntityService, $uibModal, $log) {
         let vm = this;
-        vm.test="this is my sales component";
+        vm.test = 'this is my test result';
         let saleService;
+        let productService;
 
         vm.$onInit = function () {
             checkSession();
@@ -24,13 +25,15 @@
 
         let setDefaults = ()=>{
             saleService = new EntityService('sale');
+            productService = new EntityService('product');
             loadData();
             vm.startSale();
+            
         }
 
         let loadData = ()=>{
             loadHeaders();
-            loadSales();
+            loadProducts();
         }
 
         let loadHeaders = ()=>{
@@ -52,14 +55,14 @@
             );
         }
 
-        let loadSales = ()=>{
-            saleService.get(
+        let loadProducts = ()=>{
+            productService.get(
                 (response)=>{
                     if(response.data.error){
-                        alert('Hubo un error al cargar los saleos');
+                        alert('Hubo un error al cargar los productos');
                     }else{
-                        vm.sales = response.data.data;
-                        console.log(vm.sale);
+                        vm.products = response.data.data;
+                        console.log(vm.product);
                     }
                 }
             );
@@ -70,18 +73,26 @@
         }
 
         vm.saveSale = () => {
-            if(vm.sale.code && vm.sale.barcode && vm.sale.name && vm.sale.description && vm.sale.lastCost && vm.sale.brand && vm.sale.model && vm.sale.manufacturer){
+            console.log(vm.sale.user);
+            console.log(vm.sale.provider);
+            if(vm.sale.saleNo && vm.sale.billNo && vm.sale.date && vm.sale.returnDate && vm.sale.state && vm.sale.user && vm.sale.provider &&vm.sale.product && vm.sale.article && vm.sale.quantity && vm.sale.unitCost){
+
+                vm.sale.user = JSON.parse(vm.sale.user);
+                vm.sale.provider= JSON.parse(vm.sale.provider);
+                vm.sale.product= JSON.parse(vm.sale.product); 
+
+                console.log("it's getting hereleve 2");
                 if(vm.sale.id){
                     saleService.update(vm.sale, success, error);
                 }else{
                     saleService.save(vm.sale, success, error);
                 }
+                console.log("it's getting here level 3");
 
                 loadData();
                 vm.startSale();
             }
         }
-
         vm.modifySale = (sale)=>{
             vm.sale = sale;
         }
@@ -90,13 +101,12 @@
             saleService.delete(index);
             loadData();
         }
-
         let success = (response)=>{response.data.message}
         let error = (response)=>{response.data.message}
 
-
+        
         setDefaults();
-
+        
     };
 
     const component = {
@@ -111,4 +121,9 @@
 
     saleComponentModule.component('saleComponent', component);
 
-})();
+
+    
+
+}
+
+)();

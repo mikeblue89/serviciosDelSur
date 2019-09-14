@@ -51,6 +51,16 @@
                 'DELETE': 'purchase',
                 'GETMetadata': 'purchase/metadata'
             }
+        },
+        'sale': {
+            'endpoints': {
+                'BASE': 'sale',
+                'GET': 'sale',
+                'POST': 'sale',
+                'PUT': 'sale',
+                'DELETE': 'sale',
+                'GETMetadata': 'sale/metadata'
+            }
         }
 
     });

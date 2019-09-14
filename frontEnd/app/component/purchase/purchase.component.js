@@ -107,10 +107,11 @@
         vm.savePurchase = () => {
             console.log(vm.purchase.user);
             console.log(vm.purchase.provider);
-            if(vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.user && vm.purchase.provider){
+            if(vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.state && vm.purchase.user && vm.purchase.provider &&vm.purchase.product && vm.purchase.article && vm.purchase.quantity && vm.purchase.unitCost){
 
                 vm.purchase.user = JSON.parse(vm.purchase.user);
                 vm.purchase.provider= JSON.parse(vm.purchase.provider);
+                vm.purchase.product= JSON.parse(vm.purchase.product); 
 
                 console.log("it's getting hereleve 2");
                 if(vm.purchase.id){
@@ -149,10 +150,19 @@
                 }
               });
         }
+
+        vm.modifyPurchase = (purchase)=>{
+            vm.purchase = purchase;
+        }
+
+        vm.deletePurchase = ()=>{
+            purchaseService.delete(index);
+            loadData();
+        }
         let success = (response)=>{response.data.message}
         let error = (response)=>{response.data.message}
 
-      /*  this.modalUpdate = function (size, selectedProduct) {
+      /*  this.modalUpdate = function (size, selectedPurchase) {
             
             var modalInstance = $uibModal.open({
               templateUrl: '<product-component></product-component>',

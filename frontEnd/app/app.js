@@ -72,6 +72,14 @@
                     url: "/purchase",
                     template: "<purchase-component></purchase-component>",
                 }
+            },
+            {
+                name: "app.sale",
+                options: {
+                    title: "Sale",
+                    url: "/sale",
+                    template: "<sale-component></sale-component>",
+                }
             }
         ];
 
