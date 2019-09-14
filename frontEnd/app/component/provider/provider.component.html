@@ -1,8 +1,98 @@
 <ui-view></ui-view>
-<div class="container">
-    <div class="panel">
-            <div class="login_description col-sm-6 text-center">
-                    <h1>This is the providers page</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="left">
+                <div class="menu">
+                    <li class="item">
+                        <a href="" class="btn-custom" id="addProvider"> <i class="fas fa-plus-square"></i>Agregar proveedores</a>
+                    </li>
+                    <li class="item">
+                        <a href="" class="btn-custom" id="editProvider"><i class="fas fa-pen-square"></i>Editar proveedores</a>
+                    </li>
+                    <li class="item">
+                        <a href="" class="btn-custom" id="deleteProvider" ng-model='hideAddProvider' ng-click="vm.hide(hideAddProvider)"> <i class="fas fa-trash-alt"></i>Eliminar proveedor</a>
+                    </li>
+                </div>
             </div>
+        </div>
+
+        <div class="col-xs-8 right">
+                <div class="row" ng-show="vm.state=='form'">
+                    <div class="col">
+                            <form>
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="nit">{{vm.header[0]}}</label>
+                                            <input type="text" class="form-control" id="nit" ng-model="vm.provider.nit">
+                                        </div>
+                                        <div class="form-group col-xs-6">
+                                                <label for="name">{{vm.header[1]}}</label>
+                                                <input type="text" class="form-control" id="name" ng-model="vm.provider.name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="adress">{{vm.header[2]}}</label>
+                                                <input type="text" class="form-control" id="adress" ng-model="vm.provider.adress">
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                    <label for="phone">{{vm.header[3]}}</label>
+                                                    <input type="text" class="form-control" id="phone" ng-model="vm.provider.phone">
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="email">{{vm.header[4]}}</label>
+                                                <input type="email" class="form-control" id="email" ng-model="vm.provider.email">
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                    <label for="contact">{{vm.header[5]}}</label>
+                                                    <input type="text" class="form-control" id="contact" ng-model="vm.provider.contact">
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-xs-12">
+                                                <button id="button" type="submit" class="btn btn-success" ng-click="vm.saveProvider()">
+                                                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                                                    <span>&nbsp;&nbsp;Guardar</span>
+                                                </button>
+                                                <button id="button" type="submit" class="btn btn-default" ng-click="vm.startProvider()">
+                                                    <span class="fas fa-backspace"></span>
+                                                    <span>&nbsp;&nbsp;Limpiar</span>
+                                                </button>
+                                            </div>
+                                    </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="row" ng-show="vm.state=='table'">
+                    <div class="col">
+                            <table class="table table-condensed table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" ng-repeat='header in vm.header'>{{header}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat='provider in vm.providers'>
+                                            <td>{{provider.nit}}</td>
+                                            <td>{{provider.name}}</td>
+                                            <td>{{provider.adress}}</td>
+                                            <td>{{provider.phone}}</td>
+                                            <td>{{provider.email}}</td>
+                                            <td>{{provider.contact}}</td>
+                                            <td>
+                                                <button class="btn-primary" ng-click="vm.modifyProvider(provider)"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-warning" ng-click="vm.deleteProvider($index)"><i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                    </div>
+                </div>
+        </div>
+
     </div>
 </div>

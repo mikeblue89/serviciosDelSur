@@ -25,6 +25,7 @@
             productService = new EntityService('product');
             loadData();
             vm.startProduct();
+            vm.state = 'form';
         }
 
         let loadData = ()=>{
@@ -79,20 +80,26 @@
                 loadData();
                 vm.startProduct();
             }
+            vm.state = 'table';
         }
 
         vm.modifyProduct = (product)=>{
             vm.product = product;
+            vm.state = 'form';
         }
 
-        vm.deleteProduct = ()=>{
+        vm.deleteProduct = (index)=>{
             productService.delete(index);
             loadData();
+            vm.state = 'form';
+        }
+
+        vm.changeState = ()=>{
+            vm.state = 'table';
         }
 
         let success = (response)=>{response.data.message}
         let error = (response)=>{response.data.message}
-
 
         setDefaults();
 

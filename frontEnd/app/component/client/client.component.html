@@ -1,8 +1,108 @@
 <ui-view></ui-view>
-<div class="container">
-    <div class="panel">
-            <div class="login_description col-sm-6 text-center">
-                    <h1>This is the providers page</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="left">
+                <div class="menu">
+                    <li class="item">
+                        <a href="" class="btn-custom" id="addProduct" ng-mousedown = "vm.state == 'form'"><i class="fas fa-plus-square"></i>Agregar cliente</a>
+                    </li>
+                    <li class="item">
+                        <a href="" class="btn-custom" id="editProduct" ng-mousedown = "vm.state == 'table'"><i class="fas fa-pen-square"></i>Editar cliente</a>
+                    </li>
+                    <li class="item">
+                        <a href="" class="btn-custom" id="deleteProduct"> <i class="fas fa-trash-alt"></i>Eliminar cliente</a>
+                    </li>
+                </div>
             </div>
+        </div>
+
+        <div class="col-xs-8 right">
+                <div class="row" ng-show="vm.state == 'form'">
+                    <div class="col">
+                            <form>
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="code">{{vm.header[0]}}</label>
+                                            <input type="text" class="form-control" id="code" ng-model="vm.product.code">
+                                        </div>
+                                        <div class="form-group col-xs-6">
+                                                <label for="barCode">{{vm.header[1]}}</label>
+                                                <input type="text" class="form-control" id="barCode" ng-model="vm.product.barcode">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="name">{{vm.header[2]}}</label>
+                                                <input type="text" class="form-control" id="name" ng-model="vm.product.name">
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                    <label for="description">{{vm.header[3]}}</label>
+                                                    <input type="text" class="form-control" id="description" ng-model="vm.product.description">
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="lastCost">{{vm.header[4]}}</label>
+                                                <input type="text" class="form-control" id="lastCost" ng-model="vm.product.lastCost">
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                    <label for="brand">{{vm.header[5]}}</label>
+                                                    <input type="text" class="form-control" id="brand" ng-model="vm.product.brand">
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label for="model">{{vm.header[6]}}</label>
+                                                <input type="text" class="form-control" id="model" ng-model="vm.product.model">
+                                            </div>
+                                            <div class="form-group col-xs-6">
+                                                    <label for="manufacturer">{{vm.header[7]}}</label>
+                                                    <input type="text" class="form-control" id="manufacturer" ng-model="vm.product.manufacturer">
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-xs-12">
+                                                <button id="button" type="submit" class="btn btn-success" ng-click="vm.saveProduct()">
+                                                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                                                    <span>&nbsp;&nbsp;Guardar</span>
+                                                </button>
+                                                <button id="button" type="submit" class="btn btn-default" ng-click="vm.startProduct()">
+                                                    <span class="fas fa-backspace"></span>
+                                                    <span>&nbsp;&nbsp;Limpiar</span>
+                                                </button>
+                                            </div>
+                                    </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="row" ng-show="vm.state=='table'">
+                    <div class="col">
+                            <table class="table table-condensed table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" ng-repeat='header in vm.header'>{{header}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat='client in vm.clients'>
+                                            <td>{{client.nit}}</td>
+                                            <td>{{client.name}}</td>
+                                            <td>{{client.adress}}</td>
+                                            <td>{{client.phone}}</td>
+                                            <td>{{client.email}}</td>
+                                            <td>{{client.contact}}</td>
+                                            <td>
+                                                <button class="btn-primary" ng-click="vm.modifyClient(client)"><i class="fas fa-edit"></i></button>
+                                                <button class="btn-warning" ng-click="vm.deleteClient($index)"><i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                    </div>
+                </div>
+        </div>
+
     </div>
 </div>

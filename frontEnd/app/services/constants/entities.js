@@ -42,6 +42,16 @@
                 'GETMetadata': 'provider/metadata'
             }
         },
+        'client': {
+            'endpoints': {
+                'BASE': 'client',
+                'GET': 'client',
+                'POST': 'client',
+                'PUT': 'client',
+                'DELETE': 'client',
+                'GETMetadata': 'client/metadata'
+            }
+        },
         'purchase': {
             'endpoints': {
                 'BASE': 'purchase',
@@ -61,6 +71,7 @@
                 'DELETE': 'sale',
                 'GETMetadata': 'sale/metadata'
             }
+
         }
 
     });
