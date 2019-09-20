@@ -40,6 +40,16 @@
                 'DELETE': 'client',
                 'GETMetadata': 'client/metadata'
             }
+        },
+        'user': {
+            'endpoints': {
+                'BASE': 'user',
+                'GET': 'user',
+                'POST': 'user',
+                'PUT': 'user',
+                'DELETE': 'user',
+                'GETMetadata': 'user/metadata'
+            }
         }
 
     });
