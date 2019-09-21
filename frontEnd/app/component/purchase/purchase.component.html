@@ -46,7 +46,69 @@
                 <h3>Detalles de compra</h3>
 
 
-                
+                <div class="row">
+                    <div class="com-xs-12">
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for=''>{{vm.header[0]}} Cantidad</label>
+                                    <input type="number" class="form-control" id="nit"
+                                        ng-model="vm.purchaseDetail.quantity">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="product">Product</label>
+                                    <select type="text" class="form-control" name="product" id="articleproduct"
+                                        ng-model="vm.purchase.purchaseDetails.article.product">
+                                        <option ng-repeat='product in vm.products' value="{{product}}">{{product.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <label for="ingressDate">Fecha Ingreso</label>
+                                    <input type="date" ng-model="vm.purchase.purchaseDetails.article.ingressDate">
+                                </div>
+                                <div class="col-xs-2">
+                                    <label for="egressDate">Fecha Egreso</label>
+                                    <input type="date" ng-model="vm.purchase.purchaseDetails.article.egressDate">
+                                </div>
+                                <div class="col-xs-2">
+                                    <label for="unitCost">Costo unitario</label>
+                                    <input type="text" ng-model="vm.purchase.purchaseDetails.article.unitCost">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="brand">{{vm.header[6]}} provider</label>
+                                    <select type="text" class="form-control" id="provider"
+                                        ng-model="vm.purchase.provider">
+                                        <option ng-repeat='provider in vm.providers' value="{{provider}}">
+                                            {{provider.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="warranty">Garantia</label>
+                                    <input type="text" ng-model = "vm.purchase.purchaseDetails.article.warranty">
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="state">Estado</label>
+                                    <select name="state" id="state" ng-model = "vm.purchase.purchaseDetail.article.state">
+                                        <option value="processed">procesado</option>
+                                        <option value="cancelled">anulado</option>
+                                        <option value="sold">Vendido</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <h1>final purchase</h1>
+                        {{vm.purchase}}
+                        <h1>purchase</h1>
+                        {{vm.purchase.purchaseDetails}}
+                        <h1>article</h1>
+                        {{vm.purchase.purchaseDetails.article}}
+                    </div>
+                </div>
 
 
 
@@ -56,8 +118,6 @@
 
 
 
-
-                
                 <div class="row" ng-repeat="purchaseDetail in vm.purchaseDetails">
                     <div class="form-group col-xs-3">
                         <label for="brand">Quantity</label>
@@ -66,21 +126,23 @@
                     </div>
 
                     <div>
-                    
+
                         <div class="form-group col-xs-12">
                             <div class="form-group col-xs-2">
                                 <label for="brand">{{vm.header[8]}}</label>
                                 <label for="lastCost">Product</label>
                                 <select type="text" class="form-control" name="purchaseDetails[article][product]"
                                     id="articleproduct" ng-model="vm.purchase.purchaseDetails.article.product">
-                                    <option ng-repeat='product in vm.products' value="{{product}}">{{product.name}}</option>
+                                    <option ng-repeat='product in vm.products' value="{{product}}">{{product.name}}
+                                    </option>
                                 </select>
                             </div>
 
                             <div class="form-group col-xs-2">
-                            <label for="lastCost">Serial Number</label>
-                            <input type="number" class="form-control" name="purchaseDetails [article][serialNumber]"
-                                id="articleSerialNumber" ng-model="vm.purchase.purchaseDetails.article.serialNumber">
+                                <label for="lastCost">Serial Number</label>
+                                <input type="number" class="form-control" name="purchaseDetails [article][serialNumber]"
+                                    id="articleSerialNumber"
+                                    ng-model="vm.purchase.purchaseDetails.article.serialNumber">
                             </div>
                             <div class="form-group col-xs-2">
                                 <label for="lastCost">Ingress Date</label>
@@ -121,7 +183,7 @@
 
                 </div>
                 <div class="addbtn" ng-click="addPurchaseDetail()">
-                        <span>ADD</span>
+                    <span>ADD</span>
                 </div>
 
                 <button id="button" type="submit" class="btn btn-success" ng-click="vm.savePurchase()">

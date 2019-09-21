@@ -13,6 +13,7 @@
         let productService;
         let userService;
         let providerService;
+        let articleService;
        
 
         vm.purchaseDetails = [{}];
@@ -38,7 +39,8 @@
             purchaseService = new EntityService('purchase');
             productService = new EntityService('product');
             userService = new EntityService('user');
-            providerService = new EntityService('provider');
+            providerService = new EntityService('provider'); 
+            articleService = new EntityService('article');
             loadData();
             vm.startPurchase();
             vm.state = 'form';
@@ -70,6 +72,22 @@
                     }
                 }
             );
+
+            productService.loadMetadata(
+                (response) => {
+                    if (response.data.error) {
+                        alert('Hubo un error al cargar los datos de cabecera');
+                    } else {
+                        vm.header = [];
+                        for (let header in response.data.data) {
+                            if (header != "updatedAt" && header != "createdAt" && header != "__v" && header != "_id") {
+                                vm.productHeader.push(header);
+                            }
+                        }
+                    }
+                }
+            );
+            
         }
 
         let loadPurchases = () => {
@@ -126,6 +144,8 @@
 
         vm.startPurchase = () => {
             vm.purchase = {};
+            vm.purchaseDetails = [];
+            vm.article = [];
         }
 
         vm.savePurchase = () => {
