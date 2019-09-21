@@ -71,7 +71,16 @@
                 'DELETE': 'sale',
                 'GETMetadata': 'sale/metadata'
             }
-
+        },
+        'user': {
+            'endpoints': {
+                'BASE': 'user',
+                'GET': 'user',
+                'POST': 'user',
+                'PUT': 'user',
+                'DELETE': 'user',
+                'GETMetadata': 'user/metadata'
+            }
         }
 
     });
