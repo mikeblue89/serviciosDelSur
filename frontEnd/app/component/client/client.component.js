@@ -67,8 +67,8 @@
         }
 
         vm.saveClient = () => {
-            if(vm.client.nit && vm.client.name && vm.client.adress && vm.client.phone && vm.client.email && vm.client.contact){
-                if(vm.client.id){
+            if(vm.client.nit && vm.client.name && vm.client.address && vm.client.telephone && vm.client.email && vm.client.contact){
+                if(vm.client._id){
                     clientService.update(vm.client, success, error);
                 }else{
                     clientService.save(vm.client, success, error);
@@ -86,8 +86,8 @@
             vm.state = 'form';
         }
 
-        vm.deleteClient = ()=>{
-            clientService.delete(index);
+        vm.deleteClient = (id)=>{
+            clientService.delete(id);
             loadData();
         }
 

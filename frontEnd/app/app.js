@@ -67,6 +67,16 @@
                     template: "<client-component></client-component>",
                     data: { css: ['app/css/clientStyle.css'] }
                 }
+            },
+            {
+                name: "app.profile",
+                options: {
+                    title: "Profile",
+                    option: 'profile',
+                    url: "/profile",
+                    template: "<profile-component></profile-component>",
+                    data: { css: ['app/css/profileStyle.css'] }
+                }
             }
         ];
 
@@ -132,6 +142,9 @@
                 }
                 case 'Client':{
                     return 'fas fa-suitcase'
+                }
+                case 'Profile':{
+                    return 'far fa-user-circle'
                 }
                 default:{
                     return '';

@@ -67,8 +67,8 @@
         }
 
         vm.saveProvider = () => {
-            if(vm.provider.nit && vm.provider.name && vm.provider.adress && vm.provider.phone && vm.provider.email && vm.provider.contact){
-                if(vm.provider.id){
+            if(vm.provider.nit && vm.provider.name && vm.provider.address && vm.provider.phone && vm.provider.email && vm.provider.contact){
+                if(vm.provider._id){
                     providerService.update(vm.provider, success, error);
                 }else{
                     providerService.save(vm.provider, success, error);

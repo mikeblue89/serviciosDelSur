@@ -1,0 +1,161 @@
+<ui-view></ui-view>
+</br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="thumbnail shadow">
+                        </br>
+                        </br>
+                        <div class="caption">
+                            <center>
+                                <h3 class="customFont"><span class="glyphicon glyphicon-user"></span>Profile Settings
+                                </h3>
+                            </center>
+                        </div>
+
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="employeeCode" class="customFont">{{vm.header[0]}}</label>
+                                    <input type="text" class="form-control" id="code" ng-model="vm.user.employeeCode"
+                                        ng-disabled="vm.rol == 'normalUser'">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="name" class="customFont">{{vm.header[1]}}</label>
+                                    <input type="text" class="form-control" id="barCode" ng-model="vm.user.name"
+                                        ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="lastName" class="customFont">{{vm.header[2]}}</label>
+                                    <input type="text" class="form-control" id="name" ng-model="vm.user.lastName"
+                                        ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="nit" class="customFont">{{vm.header[3]}}</label>
+                                    <input type="text" class="form-control" id="description" ng-model="vm.user.nit"
+                                        ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="accountNumber" class="customFont">{{vm.header[4]}}</label>
+                                    <input type="text" class="form-control" id="lastCost"
+                                        ng-model="vm.user.accountNumber" ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="phone" class="customFont">{{vm.header[5]}}</label>
+                                    <input type="text" class="form-control" id="brand" ng-model="vm.user.phone"
+                                        ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="email" class="customFont">{{vm.header[6]}}</label>
+                                    <input type="email" class="form-control" id="lastCost" ng-model="vm.user.email"
+                                        ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="nick" class="customFont">{{vm.header[7]}}</label>
+                                    <input type="text" class="form-control" id="brand" ng-model="vm.user.nick"
+                                        ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-xs-6">
+                                    <label for="password" class="customFont">{{vm.header[8]}}</label>
+                                    <input type="password" class="form-control" id="lastCost"
+                                        ng-model="vm.user.password" ng-disabled="vm.disabled == 'disabled'">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="roles" class="customFont">{{vm.header[9]}}</label>
+                                    <input type="text" class="form-control" id="brand" ng-model="vm.user.roles"
+                                        ng-disabled="vm.rol == 'normalUser'">
+                                </div>
+                            </div>
+                            </br>
+                            </br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button id="button" type="submit" class="btn btn-default m"
+                                        ng-click="vm.saveUser()">
+                                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                                        <span>&nbsp;&nbsp;Save</span>
+                                    </button>
+                                    <button id="button" type="submit" class="btn btn-default" ng-click="vm.editUser()"
+                                        ng-show="vm.state == 'edit'">
+                                        <span class="fas fa-backspace"></span>
+                                        <span>&nbsp;&nbsp;Edit</span>
+                                    </button>
+                                    <button id="button" type="submit" class="btn btn-default" ng-click="vm.cancel()"
+                                        ng-show="vm.state == 'cancel'">
+                                        <span class="fas fa-undo"></span>
+                                        <span>&nbsp;&nbsp;Cancel</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                    </div>
+                </div>
+            </div>
+            </br>
+            </br>
+            <div class="row" ng-show="vm.rol == 'root'">
+
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label for="search">Busqueda:&nbsp;&nbsp;</label><input type="text" id="search"
+                                ng-model="vm.search.$">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-condensed table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" ng-repeat='header in vm.header'
+                                            ng-if="header != '_id' && header != 'phone' && header != 'accountNumber' && header != 'nick' && header != 'nit' && header != 'password'">
+                                            {{header}}</th>
+                                    </tr>
+                                    <tr>
+                                        <th ng-repeat='header in vm.header'
+                                            ng-if="header != '_id' && header != 'phone' && header != 'accountNumber' && header != 'nick' && header != 'nit' && header != 'password'">
+                                            <input type="text" ng-model="vm.search[header]"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat='user in vm.users | filter: vm.search'>
+                                        <td>{{user.employeeCode}}</td>
+                                        <td>{{user.name}}</td>
+                                        <td>{{user.lastName}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.roles}}</td>
+                                        <td>
+                                            <button class="btn btn-primary" ng-click="vm.modifyUser(user)"><i
+                                                    class="fas fa-edit"></i></button>
+                                            <button class="btn btn-warning" ng-click="vm.deleteUser(user._id)"><i
+                                                    class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+</div>

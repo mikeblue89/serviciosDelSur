@@ -1,4 +1,16 @@
-<div >
+<div>
     <ui-view></ui-view>
-    <h1>{{vm.test}}</h1>
+    <div class="container'fluid">
+        <div class="row" ng-show="vm.state == 'homePage'">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-10">
+                <center>
+                    <h1>Bienvenido</h1>
+                </center>
+                <center><img src="app/img/home.jpg" alt="Nature" class="responsive"></center>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        <div class="row" ng-show = "vm.state == 'management'"></div>
+    </div>
 </div>

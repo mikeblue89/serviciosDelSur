@@ -19,8 +19,8 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-xs-6">
-                                <label for="adress">{{vm.header[2]}}</label>
-                                <input type="text" class="form-control" id="adress" ng-model="vm.provider.adress">
+                                <label for="address">{{vm.header[2]}}</label>
+                                <input type="text" class="form-control" id="address" ng-model="vm.provider.address">
                             </div>
                             <div class="form-group col-xs-6">
                                 <label for="phone">{{vm.header[3]}}</label>
@@ -52,6 +52,7 @@
                                     <span>&nbsp;&nbsp;Cancelar</span>
                                 </button>
                             </div>
+                            {{vm.provider}}
                         </div>
                     </form>
                 </div>
@@ -87,7 +88,7 @@
                                     <tr ng-repeat='provider in vm.providers | filter: vm.search'>
                                         <td>{{provider.nit}}</td>
                                         <td>{{provider.name}}</td>
-                                        <td>{{provider.adress}}</td>
+                                        <td>{{provider.address}}</td>
                                         <td>{{provider.phone}}</td>
                                         <td>{{provider.email}}</td>
                                         <td>{{provider.contact}}</td>

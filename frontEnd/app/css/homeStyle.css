@@ -11,6 +11,30 @@
     box-shadow: 1px 2px 5px rgb(27, 27, 27);
 }
 
+.button{
+    font-size: 50px;
+    color: #636e72;
+    padding: 0.3em  0 0 0;
+}
+
+.button :hover{
+    color: white;
+}
+
+
 .customFont{
     font-family: "Montserrat";
+}
+
+.position{
+    align-content: left;
+}
+
+.btn-custom{
+    border-radius: 4rem;
+    background-color: #222222;
+    color: white;
+    font-size: 2rem;
+    font-family: "Montserrat";
+    box-shadow: 1px 2px 5px rgb(27, 27, 27);
 }

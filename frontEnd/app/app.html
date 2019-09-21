@@ -9,10 +9,10 @@
 			</button>
 		</div>
 
-        <div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
-            <ul class="nav navbar-nav" ng-repeat="item in vm.navbarItems">
-				<li ng-if = "!item.abstract && item.title != 'Login'">
-					<a ui-sref= "{{item.name}}" ui-sref-active="active">
+		<div class="collapse navbar-collapse" uib-collapse="vm.isNavCollapsed">
+			<ul class="nav navbar-nav" ng-repeat="item in vm.navbarItems">
+				<li ng-if="!item.abstract && item.title != 'Login' && item.option != 'profile'">
+					<a ui-sref="{{item.name}}" ui-sref-active="active">
 						<h4 class="customFont">
 							<i ng-class="vm.icon(item.title)"></i>
 							{{item.title}}
@@ -20,21 +20,27 @@
 					</a>
 				</li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right" ng-repeat="item in vm.navbarItems">
+				<li class="icon" ng-if="!item.abstract && item.title != 'Login' && item.option == 'profile'">
+					<span>
+						<a ui-sref="{{item.name}}" ui-sref-active="active">
+							<i title="Profile" class="button" ng-class="vm.icon(item.title)"></i>
+						</a>
+					</span>
+				</li>
+			</ul>
 			<ul class="nav navbar-nav navbar-right">
-					<li>
-						<button type="button" class="btn customButton customFont btn-default navbar-btn navbar-right" ng-click="vm.logout()">
-								<h4>
-									<i class="fas fa-sign-out-alt"></i>
-									Log Out
-								</h4>
-						</button>
-					</li>
-					<li>
-						<a href=""></a>
-					</li>
-				</ul>
+				<li>
+					<span ng-click="vm.logout()">
+						<i title="Log Out" class="fas fa-sign-out-alt button"></i>
+					</span>
+				</li>
+				<li>
+					<a href=""></a>
+				</li>
+			</ul>
 		</div>
 
 	</nav>
-    <ui-view></ui-view>
+	<ui-view></ui-view>
 </div>
