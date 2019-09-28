@@ -15,7 +15,7 @@
         let providerService;
        
 
-        vm.purchaseDetails = [{}];
+        
     
         vm.addPurchaseDetail = function () {
           //add more empty rows
@@ -128,27 +128,63 @@
             vm.purchase = {};
         }
 
+        vm.purchaseDetails = [];
+
+        // vm.purchaseDetails =
+        // [
+        //     { 'quantity': '1', 'product': 'test', 'unitCost': 'test' },
+        // ];
+
+        vm.addRow = function () {
+            if (vm.purchaseDetail.quantity != undefined && vm.purchaseDetail.product != undefined && vm.purchaseDetail.unitCost != undefined) {
+                var detail = {};
+                detail.quantity = vm.purchaseDetail.quantity;
+                detail.product = JSON.parse(vm.purchaseDetail.product);
+                detail.unitCost = vm.purchaseDetail.unitCost;
+
+                vm.purchaseDetails.push(detail);
+
+                // CLEAR TEXTBOX.
+                vm.purchaseDetail.quantity = null;
+                vm.purchaseDetail.product = null;
+                vm.purchaseDetail.unitCost = null;
+            }
+        };
+
+        vm.removeRow = function () {
+            var arrDetail = [];
+            angular.forEach(vm.purchaseDetails, function (value) {
+                if (!value.Remove) {
+                    arrDetail.push(value);
+                }
+            });
+            vm.purchaseDetails = arrDetail;
+        };
+
+        // FINALLY SUBMIT THE DATA.
+        vm.submit = function () {
+            var arrMovie = [];
+            angular.forEach(vm.movieArray, function (value) {
+                arrMovie.push('Name:' + value.name + ', Director:' + value.director);
+            });
+            vm.display = arrMovie;
+        };
+
         vm.savePurchase = () => {
             console.log(vm.purchase);
+            console.log(vm.purchaseDetails);
 
-            if (vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.state && vm.purchase.user && vm.purchase.provider
-                && vm.purchase.purchaseDetails.product && vm.purchase.purchaseDetails.article
-                && vm.purchase.purchaseDetails.quantity && vm.purchase.purchaseDetails.unitCost) {
+            if (vm.purchase.purchaseNo && vm.purchase.billNo && vm.purchase.date && vm.purchase.returnDate && vm.purchase.user && vm.purchase.provider) {
 
-
+                vm.purchase.purchaseNo = vm.purchase.purchaseNo;
+                vm.purchase.billNo = vm.purchase.billNo;
                 vm.purchase.date = new Date(vm.purchase.date);
-                vm.purchase.returnDate = new Date(vm.purchase.returnDate);
+                vm.purchase.returnDate = vm.purchase.returnDate;
                 vm.purchase.user = JSON.parse(vm.purchase.user);
                 vm.purchase.provider = JSON.parse(vm.purchase.provider);
-                vm.purchase.purchaseDetails.product = JSON.parse(vm.purchase.purchaseDetails.product);
-                vm.purchase.purchaseDetails.article = JSON.parse(vm.purchase.purchaseDetails.article);
-
-                console.log("this is my purchase details" + vm.purchase.purchaseDetails);
-                // vm.purchase.purchaseDetails.product= JSON.parse(vm.purchase.purchaseDetails.product); 
-                // vm.purchase.purchaseDetails.article= JSON.parse(vm.purchase.purchaseDetails.article); 
-
-                /*vm.purchase.date = vm.purchase.date.toDateString();
-                vm.purchase.returnDate = vm.purchase.returnDate.toDateString();*/
+                vm.purchase.purchaseDetails = vm.purchaseDetails;
+                
+                
 
 
                 if (vm.purchase.id) {
@@ -157,69 +193,6 @@
                     purchaseService.save(vm.purchase, success, error);
                 }
 
-
-
-
-
-                vm.purchase.purchaseDetails.articles = [{
-                    "articles":
-                        [
-                            {
-                                "product": {
-                                    "_id": "",
-                                    "code": "",
-                                    "barcode": "",
-                                    "name": "",
-                                    "description": "",
-                                    "lastCost": 1,
-                                    "brand": "",
-                                    "model": "",
-                                    "manufacturer": ""
-                                },
-                                "serialNumber": 111,
-                                "ingressDate": "",
-                                "provider": {
-                                    "_id": "",
-                                    "nit": "",
-                                    "name": "",
-                                    "address": "",
-                                    "phone": 1,
-                                    "email": "",
-                                    "contact": "contact1"
-                                },
-                                "egressDate": "NA",
-                                "waranty": "YES",
-                                "unitCost": 100
-                            },
-                            {
-                                "product": {
-                                    "_id": "5d841afed0319a1f6c66950c",
-                                    "code": 2,
-                                    "barcode": "qwe2",
-                                    "name": "Product2",
-                                    "description": "Description2",
-                                    "lastCost": 2345,
-                                    "brand": "Brand2",
-                                    "model": "Model2",
-                                    "manufacturer": "Manufacturer2"
-                                },
-                                "serialNumber": 111,
-                                "ingressDate": "6/09/2019",
-                                "provider": {
-                                    "_id": "5d8441895fa5854b24c4a11d",
-                                    "nit": 2,
-                                    "name": "Name2",
-                                    "address": "Ciudad2",
-                                    "phone": 2,
-                                    "email": "2@gmail.com",
-                                    "contact": "contact2"
-                                },
-                                "egressDate": "NA",
-                                "waranty": "YES",
-                                "unitCost": 100
-                            }
-                        ]
-                }];
 
 
                 loadData();
@@ -240,6 +213,8 @@
         vm.range = function (n) {
             return new Array(n);
         };
+
+
 
         /* --- pop up  ---*/
 
