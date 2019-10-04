@@ -11,6 +11,17 @@
                 'LOGOUT': 'logout'
             }
         },
+        'user': {
+            'endpoints': {
+                'BASE': 'user',
+                'GET': 'user',
+                'POST': 'user',
+                'PUT': 'user',
+                'DELETE': 'user',
+                'GETMetadata': 'user/metadata'
+            }
+        }  
+        ,
         'product': {
             'endpoints': {
                 'BASE': 'product',
@@ -39,6 +50,26 @@
                 'PUT': 'client',
                 'DELETE': 'client',
                 'GETMetadata': 'client/metadata'
+            }
+        },
+        'purchase': {
+            'endpoints': {
+                'BASE': 'purchase',
+                'GET': 'purchase',
+                'POST': 'purchase',
+                'PUT': 'purchase',
+                'DELETE': 'purchase',
+                'GETMetadata': 'purchase/metadata'
+            }
+        },
+        'sale': {
+            'endpoints': {
+                'BASE': 'sale',
+                'GET': 'sale',
+                'POST': 'sale',
+                'PUT': 'sale',
+                'DELETE': 'sale',
+                'GETMetadata': 'sale/metadata'
             }
         },
         'user': {

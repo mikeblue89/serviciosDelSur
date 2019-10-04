@@ -1,7 +1,7 @@
 (()=>{
     'use strict';
 
-    let mainModule = angular.module('serviciosDelSur', ['ui.router', 'uiRouterStyles', 'angular-jwt']);
+    let mainModule = angular.module('serviciosDelSur', ['ui.router', 'uiRouterStyles', 'angular-jwt' , 'ui.bootstrap']);
 
     let mainModuleConfig = ($stateProvider, $locationProvider, $urlRouterProvider, $enviromentProvider, jwtOptionsProvider, enviroment, $httpProvider) => {
         
@@ -76,6 +76,22 @@
                     url: "/profile",
                     template: "<profile-component></profile-component>",
                     data: { css: ['app/css/profileStyle.css'] }
+                }
+            },
+            {
+                name: "app.purchase",
+                options: {
+                    title: "Purchase",
+                    url: "/purchase",
+                    template: "<purchase-component></purchase-component>",
+                }
+            },
+            {
+                name: "app.sale",
+                options: {
+                    title: "Sale",
+                    url: "/sale",
+                    template: "<sale-component></sale-component>",
                 }
             }
         ];

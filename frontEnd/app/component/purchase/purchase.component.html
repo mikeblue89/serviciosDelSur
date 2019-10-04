@@ -1,0 +1,168 @@
+<ui-view></ui-view>
+<div style="width:80%; margin:auto">
+    <div class="panel">
+        <div class="">
+            <h1>Compras</h1>
+            <form>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="code">{{vm.header[0]}} /purchase no</label>
+                        <input type="number" class="form-control" id="purchaseNo" ng-model="vm.purchase.purchaseNo ">
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="barCode">{{vm.header[1]}} /bill no</label>
+                        <input type="number" class="form-control" id="billNo" ng-model="vm.purchase.billNo">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="name">{{vm.header[2]}} /date</label>
+                        <input type="date" class="form-control" id="date" ng-model="vm.purchase.date">
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="description">{{vm.header[3]}} /return date</label>
+                        <input type="date" class="form-control" id="returnDate" ng-model="vm.purchase.returnDate">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="lastCost">{{vm.header[5]}} /user</label>
+                        <select type="text" class="form-control" id="user" ng-model="vm.purchase.user">
+                            <option ng-repeat='user in vm.users' value="{{user}}">{{user.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="brand">{{vm.header[6]}} /provider</label>
+                        <select type="text" class="form-control" id="provider" ng-model="vm.purchase.provider">
+                            <option ng-repeat='provider in vm.providers' value="{{provider}}">{{provider.name}}</option>
+                        </select>
+                    </div>
+
+                </div>
+                <h3>Detalles de compra</h3>
+
+                
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                        <label for="brand">Quantity</label>
+                        <input type="number" class="form-control" name="purchaseDetails[quantity]" id="Quantity"
+                            ng-model="vm.purchaseDetail.quantity">
+                    </div>
+
+                    <div class="form-group col-xs-6">
+                        <label for="brand">{{vm.header[8]}}</label>
+                        <label for="lastCost">Product</label>
+                        <select type="text" class="form-control" name="purchaseDetails[article][product]"
+                            id="articleproduct" ng-model="vm.purchaseDetail.product">
+                            <option ng-repeat='product in vm.products' value="{{product}}">{{product.name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-xs-3">
+                        <label for="lastCost">Unit Cost</label>
+                        <input type="number" class="form-control" name="purchaseDetails[article][unitCost]"
+                            id="article" ng-model="vm.purchaseDetail.unitCost">
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <button type="button" class="btn btn-sm btn-default" ng-click="vm.addRow()">Agregar Detalle</button>
+                    </div>
+
+                </div>
+
+
+                <table class="table"> 
+                    <tr>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">UnitCost</th>
+                        <th></th>
+                    </tr>
+                    <tr ng-repeat="detail in vm.purchaseDetails">
+                        <td>{{detail.quantity}}</td>
+                        <td>{{detail.product.name}}</td>
+                        <td>{{detail.unitCost}}</td>
+                        <td><input type="checkbox" ng-model="detail.Remove"/></td>
+                    </tr>
+                </table>
+                
+                <div>
+                    
+                    <button ng-click="vm.removeRow()" class="btn btn-sm btn-default" style="float: right;" >Remove Row</button>
+                    
+                </div>
+                <br>
+                <br>
+
+
+                <button id="button" type="submit" class="btn btn-success" ng-click="vm.savePurchase()">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                    <span>&nbsp;&nbsp;Guardar</span>
+                </button>
+                <button id="button" type="submit" class="btn btn-default" ng-click="vm.startpurchase()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>&nbsp;&nbsp;Limpiar</span>
+                </button>
+
+            </form>
+
+ 
+            <div class="modal" id="modal-purchase">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                close
+                            </button>
+                            <h3>Agregar un purchaseo</h3>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--ng-show="vm.state=='table'"-->
+    <div class="row">
+        <div class="col">
+            <table class="table table-condensed table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col" ng-repeat='header in vm.header'>{{header}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='purchase in vm.purchases'>
+                        <td>{{purchase.purchaseNo}}</td>
+                        <td>{{purchase.billNo}}</td>
+                        <td>{{purchase.date | date : "dd/MM/y"}}</td>
+                        <td>{{purchase.returnDate | date : "dd/MM/y"}}</td>
+                        <td>{{purchase.state}}</td>
+                        <td>{{purchase.user.name}}</td>
+                        <td>{{purchase.provider.name}}</td>
+                        <td>
+                        <table>
+                            <tbody>
+                                <tr ng-repeat='detail in purchase.purchaseDetails'>
+                                    <td> {{detail.quantity}} </td>
+                                    <td> {{detail.product.name }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+                        <td>
+                            <button class="btn-primary" ng-click="vm.modifyPurchase(purchase)"><i
+                                    class="fas fa-edit"></i></button>
+                            <button class="btn-warning" ng-click="vm.deletePurchase(purchase._id)"><i
+                                    class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

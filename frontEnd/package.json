@@ -16,8 +16,11 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",
-    "angular-ui-bootstrap": "^2.5.6",
+    "angular-animate": "^1.7.8",
+    "angular-sanitize": "^1.7.8",
+    "angular-bootstrap": "^0.12.2",
     "angular-jwt": "^0.1.11",
+    "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-router-styles-fixed": "^1.1.2",
     "bootstrap": "^3.3.7",
     "del": "^5.0.0",
