@@ -184,9 +184,6 @@
                 vm.purchase.provider = JSON.parse(vm.purchase.provider);
                 vm.purchase.purchaseDetails = vm.purchaseDetails;
                 
-                
-
-
                 if (vm.purchase.id) {
                     purchaseService.update(vm.purchase, success, error);
                 } else {
@@ -244,7 +241,18 @@
         vm.modifyPurchase = (purchase) => {
             purchase.date = new Date(purchase.date);
             purchase.returnDate = new Date(purchase.returnDate);
-            vm.purchase = purchase;
+            purchase.user = purchase.user.name;
+            vm.purchase.user = vm.purchase.data[countryCode];
+
+
+
+            // vm.purchase.purchaseNo = vm.purchase.purchaseNo;
+            // vm.purchase.billNo = vm.purchase.billNo;
+            // vm.purchase.date = new Date(vm.purchase.date);
+            // vm.purchase.returnDate = vm.purchase.returnDate;
+            vm.purchase.user = purchase.user.name;
+            // vm.purchase.provider = JSON.parse(vm.purchase.provider);
+            // vm.purchase.purchaseDetails = vm.purchaseDetails;
             // vm.purchase.date = vm.purchase.date.getDate() + "/" + vm.purchase.date.getMonth() + "/" + vm.purchase.date.getFullYear();  
             // vm.purchase.returnDate = vm.purchase.returnDate.getDate() + "/" + vm.purchase.returnDate.getMonth() + "/" + vm.purchase.returnDate.getFullYear()
             vm.state = 'form';
